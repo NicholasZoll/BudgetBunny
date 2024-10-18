@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐰Login - BudgetBunny</title>
+    <link rel="stylesheet" href="loginaccount.css">
+</head>
+<body>
+    <!-- Logo at the top right corner -->
+    <div class="logo">
+        <img src="images/logobunnyname.png" alt="BudgetBunny Logo" class="logo-img">
+    </div>
+
+    <!-- Main container that holds the image and form -->
+    <div class="main-container">
+        <!-- Space for an image on the left -->
+        <div class="left-image">
+            <img src="images/loginbunny.png" alt="Left Side Image" class="side-image">
+        </div>
+
+        <!-- Account Creation Form -->
+        <div class="form-container">
+            <h2>Login</h2>
+            <br>
+            <p>Track your spending, manage your expenses, and take control of your budget—one hop at a time.</p>
+            <br>
+            <form action="/login-account" method="POST">
+                <input type="username" placeholder="Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit" class="create-btn">Sign in</button>
+            </form>
+
+            <p class="login-redirect">Don't have an account? <a href="createaccount.html">Create one!</a></p>
+        </div>
+    </div>
+</body>
+</html>
