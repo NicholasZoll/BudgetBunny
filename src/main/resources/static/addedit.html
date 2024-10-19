@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Envelopes</title>
+    <link rel="stylesheet" href="addedit.css">
+</head>
+<body>
+
+    <!-- Transparent background, click outside to go home -->
+    <div class="transparent-background" onclick="goHome()"></div>
+
+    <!-- White rectangular box for the forms -->
+    <div class="container">
+        <h1>Add/Edit Envelopes🥕</h1>
+        <hr>
+
+<!-- Section for Monthly Envelopes -->
+<section class="envelopes-section">
+    <br><h2>Monthly (Primary)</h2>
+    <div class="envelope-header">
+        <strong>Name</strong>
+        <strong>Amount</strong>
+    </div>
+    <div id="monthly-envelopes" class="envelopes-list">
+        <!-- Existing envelopes will be displayed here -->
+    </div>
+    <button class="add-envelope-btn" onclick="addEnvelope('monthly')">Add +</button>
+</section>
+
+<!-- Section for Annual Envelopes -->
+<section class="envelopes-section">
+    <br><h2>Annually</h2>
+    <div class="envelope-header">
+        <strong>Name</strong>
+        <strong>Amount</strong>
+    </div>
+    <div id="annual-envelopes" class="envelopes-list">
+        <!-- Existing envelopes will be displayed here -->
+    </div>
+    <button class="add-envelope-btn" onclick="addEnvelope('annual')">Add +</button>
+</section>
+
+
+
+
+        <!-- Save changes button -->
+        <button class="save-btn" onclick="saveChanges()">Save Changes</button>
+    </div>
+
+    <script src="addedit.js"></script>
+</body>
+</html>
