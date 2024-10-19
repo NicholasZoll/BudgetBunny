@@ -100,5 +100,11 @@ function loadEnvelopes() {
     });
 }
 
+// NEED TO CORRECTLY LINK TO DASHBOARD PG
+function goHome() {
+    // Redirect to the dashboard page
+    window.location.href = "dashboard.html"; // Adjust this to your dashboard URL
+}
+
 // Load envelopes when the page loads
 window.onload = loadEnvelopes;
