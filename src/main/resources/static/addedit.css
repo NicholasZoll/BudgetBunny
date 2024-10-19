@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif; /* Set a default font for the page */
+    margin: 0;
+    padding: 0;
+    
+    background-color: #f0f0f0; /* Light background color for the body */
+}
+
+.transparent-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1; /* Layer it under the main content */
+}
+
+.container {
+    position: relative;
+    width: 600px; /* Set a fixed width for the container */
+    margin: 50px auto; /* Center the container */
+    background-color: white; /* White background for the form box */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    z-index: 2; /* Layer it above the transparent background */
+}
+
+.envelopes-section {
+    margin-bottom: 20px; /* Space between sections */
+}
+
+.envelope-header {
+    display: flex;                   /* Use flexbox for layout */
+    justify-content: space-between;  /* Space between labels */
+    margin-bottom: 10px;            /* Space below the header */
+    font-weight: bold;              /* Make labels bold */
+}
+
+.envelope-header strong {
+    width: 50%;                     /* Fixed width for alignment */
+    text-align: left;               /* Align text to the left */
+    color: #579954;
+}
+
+.envelope-form {
+    display: flex;                  /* Use flexbox for form layout */
+    justify-content: space-between; /* Space between inputs and delete button */
+    margin: 10px 0;                /* Space between each form */
+}
+
+.envelope-form input[type="text"] {
+    width: 50%;                     /* Adjust this width for the Name input */
+    padding: 10px;                  /* Padding for inputs */
+    border: 1px solid #ccc;         /* Border for inputs */
+    border-radius: 4px;             /* Rounded corners for inputs */
+    margin-right: 20px;             /* Space between inputs */
+}
+
+.envelope-form input[type="number"] {
+    width: 40%;                     /* Smaller width for the Amount input */
+    padding: 10px;                  /* Padding for inputs */
+    border: 1px solid #ccc;         /* Border for inputs */
+    border-radius: 4px;             /* Rounded corners for inputs */
+    margin-right: 20px;             /* Space between inputs */
+}
+
+
+.envelope-form {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+.envelope-form button {
+    padding: 8px 12px;              /* Padding for the button */
+    background-color: #ff4d4d;      /* Background color for delete button */
+    color: white;                    /* Text color for button */
+    border: none;                    /* Remove border */
+    border-radius: 4px;             /* Rounded corners for button */
+    cursor: pointer;                 /* Pointer cursor on hover */
+}
+
+.envelope-form button:hover {
+    background-color: #e60000;       /* Darker color on hover */
+}
+
+.envelopes-list {
+    margin-bottom: 20px;            /* Space between list and button */
+}
+
+.add-envelope-btn {
+    padding: 10px 15px;             /* Padding for the button */
+    background-color: #67b491;      /* Green background for add button */
+    color: white;                    /* Text color for button */
+    border: none;                    /* Remove border */
+    border-radius: 4px;             /* Rounded corners for button */
+    cursor: pointer;                 /* Pointer cursor on hover */
+    margin-top: 10px;                /* Space above the button */
+}
+
+.add-envelope-btn:hover {
+    background-color: #549477;       /* Darker green on hover */
+}
+
+.save-btn {
+    padding: 10px 15px;             /* Padding for the save button */
+    background-color: #67b491;      /* Blue background for save button */
+    color: white;                    /* Text color for button */
+    font-weight: bold;
+    border: none;                    /* Remove border */
+    border-radius: 4px;             /* Rounded corners for button */
+    cursor: pointer;                 /* Pointer cursor on hover */
+    margin-top: 20px;                /* Space above the button */
+}
+
+.save-btn:hover {
+    background-color: #549477;       /* Darker blue on hover */
+}
+
+.close-btn {
+    position: absolute; /* Position it relative to the nearest positioned ancestor */
+    top: 10px; /* Distance from the top */
+    right: 10px; /* Distance from the right */
+    background-color: transparent; /* Make background transparent */
+    border: none; /* Remove border */
+    font-size: 20px; /* Adjust font size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    color: #549477; /* Change color to your desired color */
+}
+
+/* editing styles */
+hr {
+    border: none;               /* Remove default border */
+    height: 3px;                /* Thicker line */
+    background-color: #3b6954;  /* A different color for the line */
+    width: 100%;                 /* Wider line */
+    margin: 20px auto;         /* Center the line with margin */
+}
+h2 {
+    color: #3b6954; /* Tomato color using RGB */
+}
+h1{
+    color: #3b6954;
+}
