@@ -3,185 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BudgetBunny Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f7ff;
-        }
-
-        header {
-            background-color: #d3e9ff;
-            color: #1d7fbf;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #1d7fbf;
-            font-weight: bold;
-        }
-
-        .container {
-            display: flex;
-            height: calc(100vh - 60px);
-        }
-
-        .sidebar {
-            width: 300px;
-            background-color: #ffffff;
-            padding: 15px;
-            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar h2 {
-            margin-top: 0;
-        }
-
-        .category {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-
-        .progress-bar {
-            background-color: #e6e6e6;
-            border-radius: 5px;
-            overflow: hidden;
-            height: 10px;
-            width: 100%;
-            margin-top: 5px;
-        }
-
-        .progress {
-            height: 100%;
-            background-color: #4caf50;
-        }
-
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f1f1f1;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #d3e9ff;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    <h1>Hi, cindynguyenz!</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Reports</a>
-        <a href="#">Help</a>
-        <a href="#">Logout</a>
-    </nav>
-</header>
-
-<div class="container">
-    <div class="sidebar">
-        <h2>Envelopes</h2>
-        <div class="category">
-            <span>Groceries</span>
-            <span>$240 / $240</span>
+    <header class="header">
+        <div class="header-content">
+            <span class="user-text">Hi, User</span>
+            <button class="profile-btn">👤</button>
         </div>
-        <div class="progress-bar">
-            <div class="progress" style="width: 100%;"></div>
+    </header>
+
+    <section class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="budgetbunnylogowords.png" alt="Logo" class="logo-img" />
+            </a>
         </div>
 
-        <div class="category">
-            <span>Gas</span>
-            <span>$100 / $100</span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress" style="width: 100%;"></div>
-        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <i class="icon">🏠</i>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <i class="icon">📊</i>
+                    <a href="#">Reports</a>
+                </li>
+                <li class="nav-item">
+                    <i class="icon">📅</i>
+                    <a href="#">Help</a>
+                </li>
+                <li class="nav-item">
+                    <i class="icon">📂</i>
+                    <a href="#">Learn</a>
+                </li>
+            </ul>
+        </nav>
 
-        <div class="category">
-            <span>Eating Out</span>
-            <span>$150 / $150</span>
+        <div class="logout-container">
+            <a href="#" class="logout">Logout</a>
         </div>
-        <div class="progress-bar">
-            <div class="progress" style="width: 100%;"></div>
-        </div>
+    </section>
 
-        <div class="category">
-            <span>Rent</span>
-            <span>$1000 / $1000</span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress" style="width: 100%;"></div>
-        </div>
-    </div>
+    <main class="main">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </main>
 
-    <div class="content">
-        <h2>Transactions</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Payee</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>11/01/24</td>
-                    <td>Scheduled</td>
-                    <td>Monthly Envelope Fill</td>
-                    <td>$1,698.33</td>
-                    <td>Now</td>
-                </tr>
-                <tr>
-                    <td>10/03/24</td>
-                    <td>Monthly</td>
-                    <td>Monthly Envelope Fill</td>
-                    <td>$1,698.33</td>
-                    <td>Now</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<footer>
-    © 2009-24 Dayspring Partners | Terms | Privacy | Subscriptions & Refunds
-</footer>
 
 </body>
 </html>
