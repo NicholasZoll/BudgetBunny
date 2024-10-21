@@ -1,3 +1,8 @@
+// Helper function to navigate home
+function goHome() {
+    window.location.href = 'index.html'; // Replace with your home page URL
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const transactionTab = document.getElementById('transactionTab');
     const incomeTab = document.getElementById('incomeTab');
