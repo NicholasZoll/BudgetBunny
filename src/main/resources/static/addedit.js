@@ -1,110 +1,110 @@
-// Function to add a new envelope
-function addEnvelope(type) {
-    const envelopeList = document.getElementById(`${type}-envelopes`);
-
-    // Create a new div for the envelope
-    const envelopeDiv = document.createElement('div');
-    envelopeDiv.classList.add('envelope-form');
-
-    // Create inputs for name and amount
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.placeholder = 'Envelope Name';
-    nameInput.required = true; // Optional, if you want HTML5 validation as well
-
-    const amountInput = document.createElement('input');
-    amountInput.type = 'number';
-    amountInput.placeholder = 'Amount';
-    amountInput.required = true; // Optional, if you want HTML5 validation as well
-
-    // Create a delete button
-    const deleteButton = document.createElement('button');
-    deleteButton.innerText = 'Delete';
-    deleteButton.onclick = () => {
-        envelopeList.removeChild(envelopeDiv);
-    };
-
-    // Append inputs and button to the envelopeDiv
-    envelopeDiv.appendChild(nameInput);
-    envelopeDiv.appendChild(amountInput);
-    envelopeDiv.appendChild(deleteButton);
-
-    // Append the envelopeDiv to the envelopeList
-    envelopeList.appendChild(envelopeDiv);
+// Function to initialize the envelope and account lists from localStorage
+function initPage() {
+    loadEnvelopes(); // Load both monthly and annual envelopes
+    loadAccounts();  // Load accounts
 }
 
-// Function to save changes
-function saveChanges() {
-    const monthlyEnvelopes = [];
-    const annualEnvelopes = [];
-
-    // Get monthly envelopes
-    const monthlyList = document.getElementById('monthly-envelopes');
-    const monthlyEnvelopeForms = monthlyList.getElementsByClassName('envelope-form');
-    for (let form of monthlyEnvelopeForms) {
-        const name = form.querySelector('input[type="text"]').value.trim();
-        const amount = form.querySelector('input[type="number"]').value.trim();
-
-        // Check if the name and amount are filled
-        if (name === '' || amount === '') {
-            alert("Please fill in all fields before saving."); // Alert for validation
-            return; // Stop the function if validation fails
-        }
-
-        monthlyEnvelopes.push({ name, amount });
-    }
-
-    // Get annual envelopes
-    const annualList = document.getElementById('annual-envelopes');
-    const annualEnvelopeForms = annualList.getElementsByClassName('envelope-form');
-    for (let form of annualEnvelopeForms) {
-        const name = form.querySelector('input[type="text"]').value.trim();
-        const amount = form.querySelector('input[type="number"]').value.trim();
-
-        // Check if the name and amount are filled
-        if (name === '' || amount === '') {
-            alert("Please fill in all fields before saving."); // Alert for validation
-            return; // Stop the function if validation fails
-        }
-
-        annualEnvelopes.push({ name, amount });
-    }
-
-    // Save to local storage
-    localStorage.setItem('monthlyEnvelopes', JSON.stringify(monthlyEnvelopes));
-    localStorage.setItem('annualEnvelopes', JSON.stringify(annualEnvelopes));
-
-    // Confirmation message
-    alert("Changes saved!");
-}
-
-// Function to load envelopes from local storage on page load
+// Function to load envelopes from localStorage
 function loadEnvelopes() {
     const monthlyEnvelopes = JSON.parse(localStorage.getItem('monthlyEnvelopes')) || [];
     const annualEnvelopes = JSON.parse(localStorage.getItem('annualEnvelopes')) || [];
 
-    monthlyEnvelopes.forEach(envelope => {
-        addEnvelope('monthly');
-        const envelopeList = document.getElementById('monthly-envelopes');
-        const lastEnvelope = envelopeList.lastChild;
-        lastEnvelope.querySelector('input[type="text"]').value = envelope.name;
-        lastEnvelope.querySelector('input[type="number"]').value = envelope.amount;
-    });
+    displayEnvelopes(monthlyEnvelopes, 'monthly-envelopes');
+    displayEnvelopes(annualEnvelopes, 'annual-envelopes');
+}
 
-    annualEnvelopes.forEach(envelope => {
-        addEnvelope('annual');
-        const envelopeList = document.getElementById('annual-envelopes');
-        const lastEnvelope = envelopeList.lastChild;
-        lastEnvelope.querySelector('input[type="text"]').value = envelope.name;
-        lastEnvelope.querySelector('input[type="number"]').value = envelope.amount;
+// Function to display envelopes in the appropriate section
+function displayEnvelopes(envelopes, elementId) {
+    const envelopeList = document.getElementById(elementId);
+    envelopeList.innerHTML = ''; // Clear current list
+
+    envelopes.forEach((envelope, index) => {
+        const envelopeForm = document.createElement('div');
+        envelopeForm.className = 'envelope-form';
+
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.value = envelope.name;
+
+        const amountInput = document.createElement('input');
+        amountInput.type = 'number';
+        amountInput.value = envelope.amount;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.innerHTML = 'Delete';
+        deleteButton.onclick = () => deleteEnvelope(elementId, index);
+
+        envelopeForm.appendChild(nameInput);
+        envelopeForm.appendChild(amountInput);
+        envelopeForm.appendChild(deleteButton);
+
+        envelopeList.appendChild(envelopeForm);
     });
 }
 
-// NEED TO CORRECTLY LINK TO DASHBOARD PG
+// Function to add a new envelope
+function addEnvelope(type) {
+    const envelopes = JSON.parse(localStorage.getItem(`${type}Envelopes`)) || [];
+    envelopes.push({ name: '', amount: '' }); // Add an empty envelope
+    localStorage.setItem(`${type}Envelopes`, JSON.stringify(envelopes));
+
+    loadEnvelopes(); // Refresh the display
+}
+
+// Function to delete an envelope
+function deleteEnvelope(type, index) {
+    const envelopes = JSON.parse(localStorage.getItem(`${type}`)) || [];
+    envelopes.splice(index, 1); // Remove the envelope
+    localStorage.setItem(`${type}`, JSON.stringify(envelopes));
+
+    loadEnvelopes(); // Refresh the display
+}
+
+// Function to load accounts from localStorage
+function loadAccounts() {
+    const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+    const accountDropdown = document.getElementById('account-dropdown');
+    accountDropdown.innerHTML = ''; // Clear existing options
+
+    accounts.forEach(account => {
+        const option = document.createElement('option');
+        option.value = account;
+        option.innerHTML = account;
+        accountDropdown.appendChild(option);
+    });
+}
+
+// Function to save changes (both envelopes and accounts)
+function saveChanges() {
+    const monthlyEnvelopes = [];
+    const annualEnvelopes = [];
+
+    document.querySelectorAll('#monthly-envelopes .envelope-form').forEach(form => {
+        const name = form.querySelector('input[type="text"]').value;
+        const amount = form.querySelector('input[type="number"]').value;
+        if (name && amount) {
+            monthlyEnvelopes.push({ name, amount });
+        }
+    });
+
+    document.querySelectorAll('#annual-envelopes .envelope-form').forEach(form => {
+        const name = form.querySelector('input[type="text"]').value;
+        const amount = form.querySelector('input[type="number"]').value;
+        if (name && amount) {
+            annualEnvelopes.push({ name, amount });
+        }
+    });
+
+    localStorage.setItem('monthlyEnvelopes', JSON.stringify(monthlyEnvelopes));
+    localStorage.setItem('annualEnvelopes', JSON.stringify(annualEnvelopes));
+
+    alert('Envelopes saved successfully!');
+}
+
+// Helper function to navigate home
 function goHome() {
-    // Redirect to the dashboard page
-    window.location.href = "dashboard.html"; // Adjust this to your dashboard URL
+    window.location.href = 'index.html'; // Replace with your home page URL
 }
 
-// Load envelopes when the page loads
-window.onload = loadEnvelopes;
+// Initialize the page
+window.onload = initPage;

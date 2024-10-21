@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Transaction</title>
+    <link rel="stylesheet" href="edittransaction.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Transaction</h1>
+
+        <label for="transactionSelect">Select a transaction:</label>
+        <select id="transactionSelect" required>
+            <option value="">Select a transaction</option>
+        </select>
+
+        <form id="editTransactionForm" style="margin-top: 20px;">
+            <label for="editTitle">Title:</label>
+            <input type="text" id="editTitle" required>
+
+            <label for="editDate">Date:</label>
+            <input type="date" id="editDate" required>
+
+            <label for="editAmount">Amount:</label>
+            <input type="number" id="editAmount" required>
+
+            <label for="editEnvelope">Envelope:</label>
+            <select id="editEnvelope" ></select>
+
+            <label for="editAccount">Account:</label>
+            <select id="editAccount"></select>
+
+            <label for="editNotes">Notes:</label>
+            <textarea id="editNotes" rows="4" placeholder="Optional Description"></textarea>
+
+            <div style="margin-top: 20px;">
+                <button type="button" id="delete-btn">Delete Transaction</button>
+                <button type="button" id="save-btn">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="edittransaction.js"></script>
+</body>
+</html>
