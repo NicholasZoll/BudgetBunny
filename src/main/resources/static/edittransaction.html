@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="edittransaction.css">
 </head>
 <body>
+    <!-- Transparent background, click outside to go home -->
+    <div class="transparent-background" onclick="goHome()"></div>
+
     <div class="container">
+        <button class="close-btn" onclick="goHome()">X</button>
         <h1>Edit Transaction</h1>
 
         <label for="transactionSelect">Select a transaction:</label>
@@ -34,10 +38,11 @@
             <label for="editNotes">Notes:</label>
             <textarea id="editNotes" rows="4" placeholder="Optional Description"></textarea>
 
-            <div style="margin-top: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
                 <button type="button" id="delete-btn">Delete Transaction</button>
                 <button type="button" id="save-btn">Save Changes</button>
             </div>
+            
         </form>
     </div>
 
