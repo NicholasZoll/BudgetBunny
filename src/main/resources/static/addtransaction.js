@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
         transactionTab.classList.add('active');
         incomeTab.classList.remove('active');
         document.getElementById('formTitle').textContent = 'Add Transaction'; // Update title
+        document.querySelector('h2').style.display = 'block'; // Show "Added Transactions" title
+        transactionList.style.display = 'block'; // Show transaction list
         addedIncomesTitle.style.display = 'none'; // Hide incomes title
         incomeList.style.display = 'none'; // Hide income list
     };
@@ -37,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
         transactionTab.classList.remove('active');
         incomeTab.classList.add('active');
         document.getElementById('formTitle').textContent = 'Add Income'; // Update title
+        // Hide transaction section when income tab is active
+        document.querySelector('h2').style.display = 'none'; // Hide "Added Transactions" title
+        transactionList.style.display = 'none'; // Hide transaction list
         addedIncomesTitle.style.display = 'block'; // Show incomes title
         incomeList.style.display = 'block'; // Show income list
         loadIncomes(); // Load incomes when income tab is clicked
