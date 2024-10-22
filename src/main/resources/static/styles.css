@@ -305,7 +305,7 @@ body {
     background-color: transparent;
     padding: 20px;
     border-radius: 5px;
-    width: 50%;
+    width: 50%; /* IMPORTANT FOR MAKING MODAL SHOW PAGE CORRECT SIZE */
     height: 80%;
     position: relative;
 }
