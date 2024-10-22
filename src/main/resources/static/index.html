@@ -40,6 +40,9 @@
                     <i class="icon">📂</i>
                     <a href="#">Learn</a>
                 </li>
+                <li>
+                    <button id="openModal">Add/Edit Envelopes</button> <!-- Button to open modal -->
+                </li>
             </ul>
         </nav>
 
@@ -49,11 +52,17 @@
     </section>
 
     <main class="main">
-        <div class="card"></div>
+        <div class="card">
+        </div>
         <div class="card"></div>
         <div class="card"></div>
     </main>
-
-
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn"></span>
+            <iframe id="externalPage" src=""></iframe> <!-- iframe to load external page -->
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
