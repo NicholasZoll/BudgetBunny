@@ -10,33 +10,41 @@ function showTab(tab) {
 }
 
 
-window.onload = function() {
-    // Get modal and button elements
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("openModal");
-    var span = document.getElementsByClassName("close-btn")[0];
-    var iframe = document.getElementById("externalPage");
+document.addEventListener("DOMContentLoaded", function () {
+    // Get all elements with the class 'openModal'
+    const modalButtons = document.querySelectorAll(".openModal");
+    const modal = document.getElementById("myModal");
+    const iframe = document.getElementById("externalPage");
+    const closeBtn = document.querySelector(".close-btn");
 
-    // Open the modal and load external page when the button is clicked
-    btn.onclick = function() {
-        modal.style.display = "flex";
-        iframe.src = "addedit.html"; // Path to the external HTML page
-    };
+    // Attach click event to each button
+    modalButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Get the URL from the button's data attribute
+            const pageUrl = this.getAttribute("data-url");
+
+            // Set the iframe's src to the selected page
+            iframe.src = pageUrl;
+
+            // Show the modal
+            modal.style.display = "flex";
+        });
+    });
 
     // Close the modal when the close button is clicked
-    span.onclick = function() {
+    closeBtn.addEventListener("click", function () {
         modal.style.display = "none";
-        iframe.src = ""; // Clear iframe src to prevent loading
-    };
+        iframe.src = ""; // Clear the iframe's src when closing the modal
+    });
 
-    // Close modal if user clicks outside of the modal content
-    window.onclick = function(event) {
+    // Optionally close the modal when clicking outside the modal content
+    window.addEventListener("click", function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
-            iframe.src = ""; // Clear iframe src
+            iframe.src = ""; // Clear the iframe's src
         }
-    };
-};
+    });
+});
 
 
 

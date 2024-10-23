@@ -41,7 +41,16 @@
                     <a href="#">Learn</a>
                 </li>
                 <li>
-                    <button id="openModal">Add/Edit Envelopes</button> <!-- Button to open modal -->
+                    <button class="openModal" data-url="addedit.html">Add/Edit Envelopes</button> <!-- Button to open modal -->
+                </li>
+                <li>
+                    <button class="openModal" data-url="addtransaction.html">Add Transaction</button> <!-- Button to open modal -->
+                </li>
+                <li>
+                    <button class="openModal" data-url="edittransaction.html">Edit Transaction</button> <!-- Button to open modal -->
+                </li>
+                <li>
+                    <button class="openModal" data-url="fillenvelope.html">Fill Envelopes</button> <!-- Button to open modal -->
                 </li>
             </ul>
         </nav>
@@ -59,7 +68,7 @@
     </main>
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn"></span>
+            <span class="close-btn"></span> <!-- Added a visible close icon -->
             <iframe id="externalPage" src=""></iframe> <!-- iframe to load external page -->
         </div>
     </div>
