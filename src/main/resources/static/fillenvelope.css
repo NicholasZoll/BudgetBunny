@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light background color for the body */
+}
+
+.transparent-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1; /* Layer it under the main content */
+}
+
+.container {
+    position: relative;
+    width: 400px; /* Adjusted width for compact form */
+    margin: 100px auto; /* Center the container */
+    background-color: white; /* White background for the form box */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    z-index: 2; /* Layer it above the transparent background */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+}
+
+label {
+    margin-bottom: 5px;
+    color: #3b6954; /* Same accent color for labels */
+    font-weight: bold;
+}
+
+input, select, textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 90%; /* Full width inputs */
+}
+
+textarea {
+    resize: none; /* Prevent resizing of the textarea */
+}
+
+.envelope-header strong {
+    color: #579954; /* Use your preferred green color */
+}
+
+/* Form buttons section */
+.form-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #67b491;
+    color: white;
+    width: 100px;
+}
+
+/* Save button */
+#save-btn {
+    background-color: #67b491; /* Green background */
+    color: white; /* White text */
+}
+
+#save-btn:hover {
+    background-color: #549477; /* Darker green on hover */
+}
+
+/* Styling the close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #3b6954; /* Accent color */
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: #3b6954;
+    width: 100%;
+    margin: 20px 0;
+}
+
+h1 {
+    color: #3b6954; /* Accent color */
+    text-align: center;
+}
+
+h1 img {
+    margin-left: 10px; /* Space between text and image */
+}
+
+.radio-group {
+    display:flex;/* Display radio buttons in a row */
+    flex-direction: row;
+    gap: 10px; /* Adjust the space between the radio button and labels */
+    margin-bottom: 15px; /* Add space below the radio buttons */
+}
+
+.radio-group label {
+    margin-right: 5px; /* Add space between the label and the radio button */
+    color: #3b6954; /* Same accent color for labels */
+}
+
+input[type="radio"] {
+    margin-right: 10px; /* Add space between the radio button and the next label */
+}
+
+
+
