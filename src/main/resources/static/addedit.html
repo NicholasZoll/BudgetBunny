@@ -8,40 +8,38 @@
 </head>
 <body>
 
-    <!-- Transparent background, click outside to go home -->
-    <div class="transparent-background" onclick="goHome()"></div>
-
+    
     <!-- White rectangular box for the forms -->
     <div class="container">
-        <button class="close-btn" onclick="goHome()">X</button>
+        <button class="close-btn" onclick="goHome()">✖</button>
         <h1>Add/Edit Envelopes🥕</h1>
         <hr>
 
-<!-- Section for Monthly Envelopes -->
-<section class="envelopes-section">
-    <h2>Monthly (Primary)</h2>
-    <div class="envelope-header">
-        <strong>Name</strong>
-        <strong>Amount</strong>
-    </div>
-    <div id="monthly-envelopes" class="envelopes-list">
-        <!-- Existing envelopes will be displayed here -->
-    </div>
-    <button class="add-envelope-btn" onclick="addEnvelope('monthly')">Add +</button>
-</section>
+    <!-- Section for Monthly Envelopes -->
+    <section class="envelopes-section">
+        <h2>Monthly (Primary)</h2>
+        <div class="envelope-header">
+            <strong>Name</strong>
+            <strong>Amount</strong>
+        </div>
+        <div id="monthly-envelopes" class="envelopes-list">
+            <!-- Existing envelopes will be displayed here -->
+        </div>
+        <button class="add-envelope-btn" onclick="addEnvelope('monthly')">Add +</button>
+    </section>
 
-<!-- Section for Annual Envelopes -->
-<section class="envelopes-section">
-    <br><h2>Annually</h2>
-    <div class="envelope-header">
-        <strong>Name</strong>
-        <strong>Amount</strong>
-    </div>
-    <div id="annual-envelopes" class="envelopes-list">
-        <!-- Existing envelopes will be displayed here -->
-    </div>
-    <button class="add-envelope-btn" onclick="addEnvelope('annual')">Add +</button>
-</section>
+    <!-- Section for Annual Envelopes -->
+    <section class="envelopes-section">
+        <br><h2>Annually</h2>
+        <div class="envelope-header">
+            <strong>Name</strong>
+            <strong>Amount</strong>
+        </div>
+        <div id="annual-envelopes" class="envelopes-list">
+            <!-- Existing envelopes will be displayed here -->
+        </div>
+        <button class="add-envelope-btn" onclick="addEnvelope('annual')">Add +</button>
+    </section>
 
 
 

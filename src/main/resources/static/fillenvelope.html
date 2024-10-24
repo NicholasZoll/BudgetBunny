@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✉️Fill Envelope</title>
+    <link rel="stylesheet" href="fillenvelope.css">
+</head>
+<body>
+    <div class="transparent-background" id="background"></div>
+    <div class="container">
+        <button class="close-btn" onclick="goHome()">✖</button>
+        
+        <h1 id="formTitle">Fill Envelope ✉️</h1>
+        <hr>
+
+        <form id="fillEnvelopeForm">
+            <!-- Date field -->
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+
+            <!-- Add / Fill Up radio buttons with amount input -->
+            <div class="radio-group">
+                <label for="addAmount">Add:</label>
+                <input type="radio" name="fillOption" id="addAmount" value="add" checked>
+                
+                <label for="fillUp">Fill:</label>
+                <input type="radio" name="fillOption" id="fillUp" value="fill">
+            </div>
+            
+            <input type="number" id="amount" placeholder="0.00" required>
+
+            <!-- Envelope dropdown -->
+            <label for="envelope-dropdown">Envelope:</label>
+            <select id="envelope-dropdown" required>
+                <option value="Rent" data-max="1200">Rent (Max: $1200)</option>
+                <option value="Groceries" data-max="300">Groceries (Max: $300)</option>
+                <option value="Utilities" data-max="150">Utilities (Max: $150)</option>
+                <!-- Add more envelope options with their corresponding max values -->
+            </select>
+
+            <!-- Notes textarea -->
+            <label for="notes">Notes:</label>
+            <textarea id="notes" rows="4" placeholder="Optional"></textarea>
+
+            <!-- Save button -->
+            <div class="form-buttons">
+                <button type="button" id="saveBtn" onclick="submitForm()">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="fillenvelope.js"></script>
+</body>
+</html>
+
