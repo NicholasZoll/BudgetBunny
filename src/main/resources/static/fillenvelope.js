@@ -1,6 +1,21 @@
+// Function to close the modal and clear the iframe NOTE: this only works in live server due to browsers enforce security measures that block access to resources from different origins, while using a live server removes these restrictions
+function closeModal() {
+    const modal = window.parent.document.getElementById('myModal'); // Access the modal in the parent document
+    const iframe = window.parent.document.getElementById('externalPage'); // Access the iframe in the parent document
+
+    if (modal) {
+        modal.style.display = "none"; // Close the modal
+    }
+
+    if (iframe) {
+        iframe.src = ""; // Clear the iframe's src
+    }
+}
+
 // Helper function to navigate home
 function goHome() {
-    window.location.href = 'index.html'; // Replace with your home page URL
+    closeModal(); // Close the modal and clear iframe
+    window.location.href = 'index.html'; // Navigate to home page
 }
 
 // Get form elements
