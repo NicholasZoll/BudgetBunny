@@ -1,4 +1,4 @@
-package com.group14.budgetbunny.entity;
+package com.group14.budgetbunny;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "envelopes")
 public class Envelope {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -73,5 +72,6 @@ public class Envelope {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+    
 }
 

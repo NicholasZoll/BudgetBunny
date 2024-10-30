@@ -1,4 +1,4 @@
-package com.group14.budgetbunny.entity;
+package com.group14.budgetbunny;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,9 +9,13 @@ import java.math.BigDecimal; // For BigDecimal
 import java.util.List; // For List
 import javax.persistence.Column; // For Column annotation
 import javax.persistence.OneToMany; // For OneToMany annotation
+
+import jakarta.persistence.Table;
+
 import javax.persistence.CascadeType; // For CascadeType
 
 @Entity
+@Table(name = "accounts")
 public class Account {
 
     @Id

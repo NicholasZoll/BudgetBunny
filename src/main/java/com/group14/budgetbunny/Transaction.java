@@ -1,4 +1,4 @@
-package com.group14.budgetbunny.entity;
+package com.group14.budgetbunny;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
