@@ -4,11 +4,11 @@ import com.group14.budgetbunny.model.Transaction;
 import com.group14.budgetbunny.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.group14.budgetbunny.model.User;
-import com.group14.budgetbunny.repository.UserRepository;
+// import com.group14.budgetbunny.model.User;
+// import com.group14.budgetbunny.repository.UserRepository;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.DeleteMapping;
