@@ -15,27 +15,24 @@
         <div class="header">
             <h1>Hop into a smarter way to save! <span class="bunny-emoji">🐰</span></h1>
         </div>
-
         <!-- Account Creation Form -->
         <div class="form-container">
             <h2>Create an Account</h2>
             <p>Track your spending, manage your expenses, and take control of your budget—one hop at a time.</p>
-
-            <form action="/create-account" method="POST">
-                <input type="text" placeholder="First Name" name="first-name" required>
-                <input type="text" placeholder="Last Name" name="last-name" required>
+            <form id="createAccountForm">
+                <input type="text" placeholder="First Name" name="firstname" required>
+                <input type="text" placeholder="Last Name" name="lastname" required>
                 <input type="email" placeholder="Email" name="email" required>
                 <input type="password" placeholder="Password" name="password" required>
                 <button type="submit" class="create-btn">Create</button>
             </form>
-
             <p class="login-redirect">Have an account? <a href="loginaccount.html">Login!</a></p>
         </div>
-
         <!-- Bunny Image -->
         <div class="bunny-section">
             <img src="images/bunnycoin.gif" alt="Bunny Mascot" class="bunny-img">
         </div>
     </div>
+    <script src="createaccount.js"></script>
 </body>
 </html>
