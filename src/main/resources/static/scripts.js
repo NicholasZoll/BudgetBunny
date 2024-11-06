@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             modal.style.display = "none";
             iframe.src = ""; // Clear the iframe's src
         }
-    });
+    }); 
 });
 
 
