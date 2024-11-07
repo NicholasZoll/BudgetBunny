@@ -10,7 +10,7 @@
 
     <header class="header">
         <div class="header-content">
-            <span class="user-text">Hi, <span id="user-email">User</span></span>
+            <span class="user-text">Hi, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
             <button class="profile-btn">👤</button>
         </div>
     </header>
@@ -74,14 +74,15 @@
     </div>
     <script src="scripts.js"></script>
     <script>
-        // Fetch the user's email and display it
-        fetch('/getUserEmail')
-            .then(response => response.text())
-            .then(email => {
-                document.getElementById('user-email').textContent = email;
+        // Fetch the user's information and display it
+        fetch('/getUserInfo')
+            .then(response => response.json())
+            .then(userInfo => {
+                document.getElementById('user-firstname').textContent = userInfo.firstname;
+                document.getElementById('user-lastname').textContent = userInfo.lastname;
             })
             .catch(error => {
-                console.error('Error fetching user email:', error);
+                console.error('Error fetching user information:', error);
             });
     </script>
 </body>
