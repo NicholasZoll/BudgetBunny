@@ -29,6 +29,7 @@ public class UserController {
     public ResponseEntity<String> login(@RequestBody User loginUser, HttpSession session) {
         Optional<User> user = repository.findByEmail(loginUser.getEmail());
         if (user.isPresent() && user.get().getPassword().equals(loginUser.getPassword())) {
+            session.setAttribute("userId", user.get().getId());
             session.setAttribute("username", user.get().getEmail());
             session.setAttribute("firstname", user.get().getFirstname());
             session.setAttribute("lastname", user.get().getLastname());

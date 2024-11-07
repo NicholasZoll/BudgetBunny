@@ -3,12 +3,7 @@ package com.group14.budgetbunny.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
 import lombok.Data;
 
 @Data
@@ -27,6 +22,10 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "envelope_id", nullable = true)
     private Envelope envelope;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
@@ -95,5 +94,13 @@ public class Transaction {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
