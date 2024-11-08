@@ -10,7 +10,7 @@
 
     <header class="header">
         <div class="header-content">
-            <span class="user-text">Hi, User</span>
+            <span class="user-text">Hi, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
             <button class="profile-btn">👤</button>
         </div>
     </header>
@@ -73,5 +73,33 @@
         </div>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        // Fetch the user's information and display it
+        fetch('/getUserInfo')
+            .then(response => response.json())
+            .then(userInfo => {
+                document.getElementById('user-firstname').textContent = userInfo.firstname;
+                document.getElementById('user-lastname').textContent = userInfo.lastname;
+            })
+            .catch(error => {
+                console.error('Error fetching user information:', error);
+            });
+
+
+        // Fetch the user's envelopes and display them - [NOT IMPLEMENTED, NOT SURE IF FUNCTIONAL]
+        // fetch('/userEnvelopes')
+        //     .then(response => response.json())
+        //     .then(envelopes => {
+        //         const envelopeList = document.getElementById('envelope-list');
+        //         envelopes.forEach(envelope => {
+        //             const li = document.createElement('li');
+        //             li.textContent = `${envelope.name}: ${envelope.budget}`;
+        //             envelopeList.appendChild(li);
+        //         });
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching envelopes:', error);
+        //     });
+    </script>
 </body>
 </html>

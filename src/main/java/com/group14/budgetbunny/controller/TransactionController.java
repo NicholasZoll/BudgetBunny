@@ -2,7 +2,12 @@ package com.group14.budgetbunny.controller;
 
 import com.group14.budgetbunny.model.Transaction;
 import com.group14.budgetbunny.repo.TransactionRepo;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 // import com.group14.budgetbunny.model.User;
 // import com.group14.budgetbunny.repo.UserRepo;
@@ -61,5 +66,16 @@ public class TransactionController {
     @DeleteMapping("/{id}")
     public void deleteTransaction(@PathVariable Long id) {
         transactionRepository.deleteById(id);
+    }
+
+    @GetMapping("/userTransactions")
+    public ResponseEntity<List<Transaction>> getUserTransactions(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId != null) {
+            List<Transaction> transactions = transactionRepository.findByUserId(userId);
+            return ResponseEntity.ok(transactions);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 }
