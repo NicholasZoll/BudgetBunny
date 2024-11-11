@@ -49,9 +49,21 @@
     </section>
 
     <main class="main">
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+        <div class="card">Card 1 Content</div>
+    
+        <!-- Card 2 with tabs to select content -->
+        <div class="card card-2">
+            <div class="tabs">
+                <button class="tab-btn active" data-content="envelopes" onclick="updateCard2('envelopes')">Envelopes</button>
+                <button class="tab-btn" data-content="accounts" onclick="updateCard2('accounts')">Accounts</button>
+            </div>
+            <div class="card-2-content">Select a tab to update Card 2 content.</div>
+        </div>
+    
+        <!-- Card 3 updates dynamically based on Card 2 -->
+        <div class="card card-3">
+            <div class="card-3-content">Content based on Card 2 selection will appear here.</div>
+        </div>
     </main>
 
 
