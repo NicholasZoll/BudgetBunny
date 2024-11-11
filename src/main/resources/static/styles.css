@@ -324,11 +324,31 @@ iframe {
     border: none;
 }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
+
+.openModal {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    padding: 15px 25px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 8px;
 }
+
+.openModal:hover {
+    color: #ddd; /* Adjust hover color to match the links */
+    background-color: #2b2f36; /* Add hover background */
+}
+
+.openModal i {
+    font-size: 20px;
+}
+
 
