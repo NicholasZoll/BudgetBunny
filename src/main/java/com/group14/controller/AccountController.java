@@ -1,17 +1,17 @@
-package com.group14.budgetbunny.controller;
+package com.group14.controller;
 
 import com.group14.budgetbunny.model.Account;
-import com.group14.budgetbunny.repo.AccountRepo;
+import com.group14.budgetbunny.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-// import com.group14.budgetbunny.model.User;
-// import com.group14.budgetbunny.repo.UserRepo;
+//import com.group14.budgetbunny.model.User;
+//import com.group14.budgetbunny.repository.UserRepository;
 
 
-// import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @Autowired
-    private AccountRepo accountRepository;
+    private AccountRepository accountRepository;
 
     @GetMapping
     public List<Account> getAllAccounts() {

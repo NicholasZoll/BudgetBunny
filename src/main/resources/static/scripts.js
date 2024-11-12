@@ -9,9 +9,8 @@ function showTab(tab) {
     event.currentTarget.classList.add('active');
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("JavaScript Loaded"); // Check if script is loading
 
+document.addEventListener("DOMContentLoaded", function () {
     // Get all elements with the class 'openModal'
     const modalButtons = document.querySelectorAll(".openModal");
     const modal = document.getElementById("myModal");
@@ -45,27 +44,4 @@ document.addEventListener("DOMContentLoaded", function () {
             iframe.src = ""; // Clear the iframe's src
         }
     });
-
-    // Select the logout button
-    const logoutButton = document.querySelector(".logout");
-
-    // Check if the button exists
-    if (logoutButton) {
-        // Add click event listener for logout confirmation
-        logoutButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default link behavior
-
-            // Show confirmation dialog
-            const confirmLogout = confirm("Are you sure you want to log out?");
-            
-            // Redirect to login page if confirmed
-            if (confirmLogout) {
-                window.location.href = "loginaccount.html";
-            } else {
-                console.log("User canceled logout"); // Log cancellation for debugging
-            }
-        });
-    } else {
-        console.error("Logout button not found");
-    }
 });

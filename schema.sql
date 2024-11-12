@@ -37,3 +37,6 @@
 --     title VARCHAR(255) NOT NULL,                                -- Brief description of transaction
 --     notes TEXT
 -- );
+
+
+

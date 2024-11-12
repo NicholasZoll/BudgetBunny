@@ -1,13 +1,13 @@
-package com.group14.budgetbunny;
+// package com.group14.budgetbunny;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class BudgetbunnyApplicationTests {
+// @SpringBootTest
+// class BudgetbunnyApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }

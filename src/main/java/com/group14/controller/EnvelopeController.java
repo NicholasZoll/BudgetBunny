@@ -1,36 +1,30 @@
-package com.group14.budgetbunny.controller;
+package com.group14.controller;
 
 import com.group14.budgetbunny.model.Envelope;
-import com.group14.budgetbunny.repo.EnvelopeRepo;
+import com.group14.budgetbunny.repository.EnvelopeRepository;
 
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.web.bind.annotation.DeleteMapping;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 // import com.group14.budgetbunny.model.User;
-// import com.group14.budgetbunny.repo.UserRepo;
-
-
-// import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.DeleteMapping;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+// import com.group14.budgetbunny.repository.UserRepository;
 
 @RestController
 @RequestMapping("/envelopes")
 public class EnvelopeController {
 
     @Autowired
-    private EnvelopeRepo envelopeRepository;
+    private EnvelopeRepository envelopeRepository;
 
     @GetMapping
     public List<Envelope> getAllEnvelopes() {
