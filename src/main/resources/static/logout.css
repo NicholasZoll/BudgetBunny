@@ -1,0 +1,81 @@
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+    justify-content: center;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 20px; /* Rounded corners */
+    padding: 1px;
+    border: 5px solid #90c8b2; /* Border to match green tones */
+    width: 400px;
+    height: 330px;
+    margin: 0;
+    padding-bottom: 0;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.modal-content img {
+    margin-bottom: 10px; /* Adjust image spacing */
+}
+
+/* Bunny image at the top */
+.modal-content img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Modal text */
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: #333;
+}
+
+/* Buttons */
+.modal-content button {
+    padding: 10px 50px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Logout button (red) */
+.logout-btn {
+    background-color: #f44336; /* Red */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #d73833;
+}
+
+/* Stay button (green) */
+.stay-btn {
+    background-color: #90c8b2; /* Match the green tones */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.stay-btn:hover {
+    background-color: #7bb3a1;
+}
+
+
+
