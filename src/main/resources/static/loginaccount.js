@@ -21,9 +21,9 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         return response.text();
     })
     .then(data => {
-        alert('Login successful!');
-        window.location.href = 'index.html'; // Redirect to the dashboard or home page
-    })
+        alert(data); // Shows "Login successful" message
+        window.location.href = 'index.html'; // Redirect to index.html
+    })    
     .catch(error => {
         console.error('Error:', error);
         alert('Failed to login. Please check your credentials and try again.');

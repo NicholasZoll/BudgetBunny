@@ -1,5 +1,6 @@
 package com.group14.budgetbunny.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -31,18 +32,33 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User loginUser, HttpSession session) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody User loginUser, HttpSession session) {
         Optional<User> user = repository.findByEmail(loginUser.getEmail());
-        if (user.isPresent() && user.get().getPassword().equals(loginUser.getPassword())) {
-            session.setAttribute("userId", user.get().getId());
-            session.setAttribute("username", user.get().getEmail());
-            session.setAttribute("firstname", user.get().getFirstname());
-            session.setAttribute("lastname", user.get().getLastname());
-            return ResponseEntity.ok("Login successful");
+        
+        if (user.isPresent()) {
+            System.out.println("User found with email: " + loginUser.getEmail());
+            if (user.get().getPassword().equals(loginUser.getPassword())) {
+                System.out.println("Password matches for user: " + loginUser.getEmail());
+                session.setAttribute("userId", user.get().getId());
+                session.setAttribute("username", user.get().getEmail());
+                session.setAttribute("firstname", user.get().getFirstname());
+                session.setAttribute("lastname", user.get().getLastname());
+    
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Login successful");
+                // response.put("redirectUrl", "/index.html");
+    
+                return ResponseEntity.ok(response);
+            } else {
+                System.out.println("Password mismatch for user: " + loginUser.getEmail());
+            }
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            System.out.println("No user found with email: " + loginUser.getEmail());
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+        .body(Collections.singletonMap("message", "Invalid credentials"));
     }
+    
 
     @GetMapping("/test")
     public String testEndpoint() {
