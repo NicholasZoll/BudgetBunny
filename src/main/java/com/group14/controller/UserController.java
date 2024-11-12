@@ -20,10 +20,20 @@ public class UserController {
     @Autowired
     UserRepository repository;
 
+    // @PostMapping("/addUser")
+    // public User addUser(@RequestBody User user) {
+    //     return repository.save(user);
+    // }
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User user) {
-        return repository.save(user);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+    try {
+        User savedUser = repository.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+}
+
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User loginUser, HttpSession session) {
