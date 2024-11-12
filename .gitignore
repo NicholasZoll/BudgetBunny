@@ -37,3 +37,5 @@ target/
 
 # macOS files
 .DS_Store
+
+.env
