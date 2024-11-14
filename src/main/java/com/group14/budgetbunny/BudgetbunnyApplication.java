@@ -14,9 +14,9 @@ public class BudgetbunnyApplication {
 		Dotenv dotenv = Dotenv.configure().load();
 
 		// test print
-		// System.out.println("Database URL: " + dotenv.get("DATABASE_URL"));
-    	// System.out.println("Database Username: " + dotenv.get("DATABASE_USERNAME"));
-		// System.out.println("Database Username: " + dotenv.get("DATABASE_PASSWORD"));
+		System.out.println("Database URL: " + dotenv.get("DATABASE_URL"));
+    	System.out.println("Database Username: " + dotenv.get("DATABASE_USERNAME"));
+		System.out.println("Database Username: " + dotenv.get("DATABASE_PASSWORD"));
 
 		// Set environment variables explicitly if needed (optional step)
 		System.setProperty("spring.datasource.url", dotenv.get("DATABASE_URL"));

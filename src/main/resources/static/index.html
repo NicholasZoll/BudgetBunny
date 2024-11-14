@@ -6,53 +6,6 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="logout.css">
-    <style>
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-        }
-
-        .modal-content h2 {
-            margin-bottom: 20px;
-        }
-
-        .modal-content button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .logout-btn {
-            background-color: #f44336;
-            color: white;
-        }
-
-        .stay-btn {
-            background-color: #1d7fbf;
-            color: white;
-        }
-    </style>
 </head>
 <body>
 
@@ -111,21 +64,9 @@
     </section>
 
     <main class="main">
-        <div class="card">Card 1 Content</div>
-    
-        <!-- Card 2 with tabs to select content -->
-        <div class="card card-2">
-            <div class="tabs">
-                <button class="tab-btn active" data-content="envelopes" onclick="updateCard2('envelopes')">Envelopes</button>
-                <button class="tab-btn" data-content="accounts" onclick="updateCard2('accounts')">Accounts</button>
-            </div>
-            <div class="card-2-content">Select a tab to update Card 2 content.</div>
-        </div>
-    
-        <!-- Card 3 updates dynamically based on Card 2 -->
-        <div class="card card-3">
-            <div class="card-3-content">Content based on Card 2 selection will appear here.</div>
-        </div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
     </main>
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -138,11 +79,11 @@
     </div>
     <!-- Logout Confirmation Modal -->
     <div id="logoutModal" class="modal">
-        <div class="modal-content">
-            <img src="budgetbunnylogo.png" alt="Bunny Logo"> 
-            <h2>Are you sure you want to log out?</h2>
-            <button class="logout-btn" onclick="confirmLogout()">Logout</button>
-            <button class="stay-btn" onclick="closeLogoutModal()">Stay</button>
+        <div id="logoutModal" class="modal-content">
+            <img src="budgetbunnylogo.png" alt="Bunny Logo" id="logoutModal"> 
+            <h2 id="logoutModal">Are you sure you want to log out?</h2>
+            <button id="logoutModal" class="logout-btn" onclick="confirmLogout()">Logout</button>
+            <button id="logoutModal" class="stay-btn" onclick="closeLogoutModal()">Stay</button>
         </div>
     </div>
     <script src="scripts.js"></script>
@@ -198,4 +139,3 @@
     </script>
 </body>
 </html>
-
