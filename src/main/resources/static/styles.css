@@ -179,9 +179,10 @@ body {
     grid-area: main;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas: 
-        "c1 c1 c1"
+        "c2 c1 c1"
+        "c2 c1 c1"
         "c2 c3 c3"
         "c2 c3 c3";
     gap: 20px;
