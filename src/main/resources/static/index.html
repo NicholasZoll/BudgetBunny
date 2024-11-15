@@ -133,7 +133,20 @@
 
         // Redirect to the logout page when confirmed
         function confirmLogout() {
-            window.location.href = "loginaccount.html"; // Replace with actual logout URL or logic
+            fetch('/logout', {
+            method: 'POST',
+            credentials: 'same-origin' // Include credentials in the request
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'loginaccount.html'; // Redirect to the login page
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
         }
 
     </script>
