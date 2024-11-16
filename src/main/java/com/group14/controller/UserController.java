@@ -33,6 +33,7 @@ public class UserController {
             session.setAttribute("username", user.get().getEmail());
             session.setAttribute("firstname", user.get().getFirstname());
             session.setAttribute("lastname", user.get().getLastname());
+            session.setAttribute("loggedIn", true);
             return ResponseEntity.ok("Login successful");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
@@ -76,4 +77,11 @@ public class UserController {
         session.invalidate();
         return ResponseEntity.ok("Logout successful");
     }
+
+    @GetMapping("/isLoggedIn")
+    public ResponseEntity<Boolean> isLoggedIn(HttpSession session) {
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+        return ResponseEntity.ok(loggedIn != null && loggedIn);
+    }
+
 }

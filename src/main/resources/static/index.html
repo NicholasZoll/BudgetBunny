@@ -99,7 +99,19 @@
                 console.error('Error fetching user information:', error);
             });
 
-
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/isLoggedIn')
+                .then(response => response.json())
+                .then(isLoggedIn => {
+                    if (!isLoggedIn) {
+                        window.location.href = 'loginaccount.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking login status:', error);
+                    window.location.href = 'loginaccount.html';
+                });
+        });
         // Fetch the user's envelopes and display them - [NOT IMPLEMENTED, NOT SURE IF FUNCTIONAL]
         // fetch('/userEnvelopes')
         //     .then(response => response.json())
