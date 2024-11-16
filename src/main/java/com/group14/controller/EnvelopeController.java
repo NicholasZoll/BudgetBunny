@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 // import com.group14.budgetbunny.model.User;
 // import com.group14.budgetbunny.repository.UserRepository;
@@ -25,6 +27,18 @@ public class EnvelopeController {
 
     @Autowired
     private EnvelopeRepository envelopeRepository;
+    
+    // for graphs in dash
+    @GetMapping("/graphData")
+    public List<Map<String, Object>> getGraphData() {
+        return envelopeRepository.findAll().stream().map(envelope -> {
+            Map<String, Object> graphData = new HashMap<>();
+            graphData.put("name", envelope.getName());
+            graphData.put("budget", envelope.getBudget());
+            graphData.put("spent", envelope.getSpent());
+            return graphData;
+        }).toList();
+    }
 
     @GetMapping
     public List<Envelope> getAllEnvelopes() {
