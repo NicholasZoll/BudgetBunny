@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Page</title>
+    <link rel="stylesheet" href="helppage.css">
+    <link rel="stylesheet" href="logout.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <span class="dashboard-title">Help Page</span>
+            <span class="user-text"><span id="user-firstname"></span> <span id="user-lastname"></span></span>
+            <button class="profile-btn">
+                🥕
+            </button>
+        </div>
+    </header>
+    <section class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="budgetbunnylogowords.png" alt="Logo" class="logo-img" />
+            </a>
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="index.html">
+                    <i class="icon">🏠</i>
+                    Back to Dashboard
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="logout-container">
+            <a href="#" id="logoutLink" class="logout">Logout</a> <!-- Logout button triggers modal -->
+        </div>
+    </section>
+    <main class="main">
+        <div class="help-container">
+            <h1>Contact Information</h1>
+            <p>If you have any questions or concerns, please feel free to reach out to us:</p>
+            <ul>
+                <li>Email: support@budgetbunny.com</li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Address: 123 Budget Bunny Lane, Savings City, SC 12345</li>
+            </ul>
+            <img src="images/bunnycoin.gif" alt="Help Image" class="help-image">
+        </div>
+    </main>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+
+
+            <span class="close-btn"></span> <!-- Added a visible close icon -->
+            <iframe id="externalPage" src=""></iframe> <!-- iframe to load external page -->
+
+        </div>
+    </div>
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="modal">
+        <div id="logoutModal" class="modal-content">
+            <img src="budgetbunnylogo.png" alt="Bunny Logo" id="logoutModal"> 
+            <h2 id="logoutModal">Are you sure you want to log out?</h2>
+            <button id="logoutModal" class="logout-btn" onclick="confirmLogout()">Logout</button>
+            <button id="logoutModal" class="stay-btn" onclick="closeLogoutModal()">Stay</button>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 BudgetBunny. All rights reserved.</p>
+    </footer>
+    <script src="helppage.js"></script>
+</body>
+</html>
