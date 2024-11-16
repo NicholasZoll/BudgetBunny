@@ -33,33 +33,43 @@ body {
 
 /* Header Content */
 .header-content {
-    position: relative;
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the user text */
+    justify-content: flex-end; /* Align items to the right */
+    width: 100%;
+    position: relative;
 }
-
+.dashboard-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    font-weight: bold;
+    color: #3b6954;
+}
 /* User Text */
 .user-text {
     font-size: 18px;
     font-weight: 500;
     color: #333;
+    margin-right: 10px;
 }
 
 /* Profile Button Positioned to the Right */
 .profile-btn {
-    position: absolute;
-    right: 20px;
     color: white;
+    background-color: rgb(196, 196, 196);
     border: none;
     border-radius: 50%;
-    padding: 10px;
-    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
-
+.profile-img {
+    width: 50px; /* Adjust the size as needed */
+    height: 50px; /* Adjust the size as needed */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image covers the area */
+}
 .logout {
     color: #d9534f;
     font-weight: bold;
