@@ -13,7 +13,7 @@
         <div class="header-content">
             <span class="dashboard-title">My Dashboard</span>
             <span class="user-text">Greetings, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
-            <button class="profile-btn">
+            <button class="profile-btn" id="profileBtn">
                 🥕
             </button>
         </div>
@@ -114,6 +114,11 @@
                     console.error('Error checking login status:', error);
                     window.location.href = 'loginaccount.html';
                 });
+
+            // event listener to profile button
+            document.getElementById('profileBtn').addEventListener('click', function() {
+                window.location.href = 'accountsettings.html';
+            });
         });
         // Fetch the user's envelopes and display them - [NOT IMPLEMENTED, NOT SURE IF FUNCTIONAL]
         // fetch('/userEnvelopes')

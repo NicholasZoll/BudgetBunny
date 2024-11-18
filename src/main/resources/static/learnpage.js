@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Error checking login status:', error);
             window.location.href = 'loginaccount.html';
         });
+
+    document.getElementById('profileBtn').addEventListener('click', function() {
+        window.location.href = 'accountsettings.html';
+    });
 });
 
 // Get the modal and logout button elements

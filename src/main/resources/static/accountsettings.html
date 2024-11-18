@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help Page</title>
-    <link rel="stylesheet" href="helppage.css">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="accountsettings.css">
     <link rel="stylesheet" href="logout.css">
 </head>
 <body>
     <header class="header">
         <div class="header-content">
-            <span class="dashboard-title">Help Page</span>
+            <span class="dashboard-title">Account Settings</span>
             <span class="user-text"><span id="user-firstname"></span> <span id="user-lastname"></span></span>
             <button class="profile-btn" id="profileBtn">
                 🥕
@@ -29,10 +29,10 @@
                 <li class="nav-item">
                     <a href="index.html">
                         <i class="icon">🏠</i>
-                        Back to Dashboard
+                        Dashboard
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="helppage.html">
                         <i class="icon">📅</i>
                         Help
@@ -52,27 +52,27 @@
         </div>
     </section>
     <main class="main">
-        <div class="help-container">
-            <h1>Contact Information</h1>
-            <p>If you have any questions or concerns, please feel free to reach out to us:</p>
-            <ul>
-                <li>Email: support@budgetbunny.com</li>
-                <li>Phone: (123) 456-7890</li>
-                <li>Address: 123 Budget Bunny Lane, Savings City, SC 12345</li>
-            </ul>
-            <img src="images/bunnycoin.gif" alt="Help Image" class="help-image">
+        <div class="account-container">
+            <h1>Account Information</h1>
+            <p>Email: <span id="user-email"></span></p>
+            <p>First Name: <span id="account-user-firstname"></span></p>
+            <p>Last Name: <span id="account-user-lastname"></span></p>
+
+            <h2>Change Password</h2>
+            <form id="changePasswordForm">
+                <label for="currentPassword">Current Password:</label>
+                <input type="password" id="currentPassword" name="currentPassword" required>
+                
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+                
+                <label for="confirmNewPassword">Confirm New Password:</label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                
+                <button type="submit">Change Password</button>
+            </form>
         </div>
     </main>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-
-
-            <span class="close-btn"></span> <!-- Added a visible close icon -->
-            <iframe id="externalPage" src=""></iframe> <!-- iframe to load external page -->
-
-        </div>
-    </div>
-    <!-- Logout Confirmation Modal -->
     <div id="logoutModal" class="modal">
         <div id="logoutModal" class="modal-content">
             <img src="budgetbunnylogo.png" alt="Bunny Logo" id="logoutModal"> 
@@ -84,6 +84,6 @@
     <footer class="footer">
         <p>&copy; 2024 BudgetBunny. All rights reserved.</p>
     </footer>
-    <script src="helppage.js"></script>
+    <script src="accountsettings.js"></script>
 </body>
 </html>

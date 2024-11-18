@@ -84,4 +84,28 @@ public class UserController {
         return ResponseEntity.ok(loggedIn != null && loggedIn);
     }
 
+    @PostMapping("/changePassword")
+    public ResponseEntity<String> changePassword(HttpSession session, @RequestBody Map<String, String> request) {
+        String email = (String) session.getAttribute("username");
+        String currentPassword = request.get("currentPassword");
+        String newPassword = request.get("newPassword");
+    
+        if (email == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
+        }
+    
+        // Fetch the user from the database
+        Optional<User> userOptional = repository.findByEmail(email);
+        if (userOptional.isEmpty() || !currentPassword.equals(userOptional.get().getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Current password is incorrect");
+        }
+    
+        // Update the user's password
+        User user = userOptional.get();
+        user.setPassword(newPassword);
+        repository.save(user);
+    
+        return ResponseEntity.ok("Password changed successfully");
+    }
+
 }
