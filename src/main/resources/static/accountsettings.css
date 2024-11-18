@@ -8,38 +8,67 @@
     bottom: 0;
     left: 0;
 }
-.help-image {
+.account-image {
     display: block;
-    
-    border-radius: 5%;
-    margin: 20px auto; /* Center the image and add some margin */
-    max-width: 42%; /* Make sure the image is responsive */
+    padding-top: 20px;
+    margin: auto; /* Center the image and add some margin */
+    max-width: 15%; /* Make sure the image is responsive */
     height: auto; /* Maintain the aspect ratio */
 }
-.help-container {
+.account-container {
     border-radius: 20%;
     background-color: #fff; /* 1118 */
     padding: 20px;
     font-size: large;
 }
-.help-container h1{
+.account-container h1{
+    padding: 20px;
+    text-decoration: underline;
+    color: #3b6954;
+}
+
+.account-container h2{
+    padding: 20px;
+    text-decoration: underline;
+    color: #3b6954;
+}
+
+#changePasswordForm {
     padding: 20px;
 
     color: #3b6954;
 }
-.help-container p{
-    font-size: 22px;
 
-    color: #3b6954;
+#changePasswordForm button {
+    background-color: #549477; /* Green background */
+    color: white; /* White text */
+    font-family: Arial, sans-serif; /* Arial font */
+    font-size: 18px; /* Slightly bigger font size */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for background color */
 }
 
-.help-container ul {
+#changePasswordForm button:hover {
+    background-color: #3b6954; /* Darker green on hover */
+}
+
+.account-container p{
+    font-size: 22px;
+    padding: 10px;
+    color: #3b6954;
+    
+}
+
+.account-container ul {
     list-style: none; /* Remove default bullet points */
     padding: 2.5%;
     padding-left: 0; /* Remove default padding */
 }
 
-.help-container ul li {
+.account-container ul li {
     position: relative;
     font-size: 20px;
 
@@ -48,7 +77,7 @@
     line-height: 1.8; /* Adjust the line height as needed */
 }
 
-.help-container ul li::before {
+.account-container ul li::before {
     content: "";
     position: absolute;
     left: 0;

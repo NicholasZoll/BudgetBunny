@@ -53,24 +53,25 @@
     </section>
     <main class="main">
         <div class="account-container">
-            <h1>Account Information</h1>
-            <p>Email: <span id="user-email"></span></p>
-            <p>First Name: <span id="account-user-firstname"></span></p>
-            <p>Last Name: <span id="account-user-lastname"></span></p>
-
-            <h2>Change Password</h2>
-            <form id="changePasswordForm">
-                <label for="currentPassword">Current Password:</label>
-                <input type="password" id="currentPassword" name="currentPassword" required>
-                
-                <label for="newPassword">New Password:</label>
-                <input type="password" id="newPassword" name="newPassword" required>
-                
-                <label for="confirmNewPassword">Confirm New Password:</label>
-                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
-                
-                <button type="submit">Change Password</button>
-            </form>
+            <div class="account-container">
+                <h1>Account Information</h1>
+                <p>Email: <span id="user-email"></span></p>
+                <p>First Name: <span id="account-user-firstname"></span></p>
+                <p>Last Name: <span id="account-user-lastname"></span></p>
+                <h2>Change Password</h2>
+                <form id="changePasswordForm">
+                    <label for="currentPassword">Current Password:</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                    
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                    
+                    <label for="confirmNewPassword">Confirm New Password:</label>
+                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                    
+                    <button type="submit">Change Password</button>
+                </form>
+                <img src="images/profilepic_processed.png" alt="Account Image" class="account-image">
         </div>
     </main>
     <div id="logoutModal" class="modal">
