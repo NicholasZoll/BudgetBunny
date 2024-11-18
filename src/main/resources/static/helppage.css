@@ -10,23 +10,28 @@
 }
 .help-image {
     display: block;
-    border: 5px solid #333;
+    
     border-radius: 5%;
     margin: 20px auto; /* Center the image and add some margin */
     max-width: 42%; /* Make sure the image is responsive */
     height: auto; /* Maintain the aspect ratio */
 }
 .help-container {
+    border-radius: 20%;
+    border: #333 solid 4px;
+    background-color: #fff; /* 1118 */
     padding: 20px;
     font-size: large;
 }
 .help-container h1{
     padding: 20px;
-    color: #fff;
+
+    color: #3b6954;
 }
 .help-container p{
     font-size: 22px;
-    color: #fff;
+
+    color: #3b6954;
 }
 
 .help-container ul {
@@ -38,7 +43,8 @@
 .help-container ul li {
     position: relative;
     font-size: 20px;
-    color: #fff;
+
+    color: #3b6954;
     padding-left: 25px; /* Add space for the carrot emoji */
     line-height: 1.8; /* Adjust the line height as needed */
 }
