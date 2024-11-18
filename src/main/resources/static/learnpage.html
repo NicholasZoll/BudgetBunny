@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Page</title>
+    <link rel="stylesheet" href="learnpage.css">
+    <link rel="stylesheet" href="logout.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <span class="dashboard-title">Learn Page</span>
+            <span class="user-text"><span id="user-firstname"></span> <span id="user-lastname"></span></span>
+            <button class="profile-btn">
+                🥕
+            </button>
+        </div>
+    </header>
+    <section class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="budgetbunnylogowords.png" alt="Logo" class="logo-img" />
+            </a>
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <i class="icon">🏠</i>
+                        Back to Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="helppage.html">
+                        <i class="icon">📅</i>
+                        Help
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="learnpage.html">
+                        <i class="icon">📂</i>
+                        Learn
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="logout-container">
+            <a href="#" id="logoutLink" class="logout">Logout</a> <!-- Logout button triggers modal -->
+        </div>
+    </section>
+    <main class="main">
+        <div class="learn-container">
+            <h1>Helpful Financial Tips</h1>
+            <div class="tip">
+                <h2>Tip 1: Create a Budget</h2>
+                <p>Creating a budget helps you track your income and expenses, ensuring you live within your means and save for future goals.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 2: Build an Emergency Fund</h2>
+                <p>An emergency fund provides a financial safety net for unexpected expenses, such as medical bills or car repairs.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 3: Pay Off Debt</h2>
+                <p>Prioritize paying off high-interest debt to reduce financial stress and free up money for savings and investments.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 4: Save for Retirement</h2>
+                <p>Start saving for retirement as early as possible to take advantage of compound interest and ensure a comfortable future.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 5: Invest Wisely</h2>
+                <p>Diversify your investments to spread risk and increase the potential for long-term growth.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 6: Track Your Spending</h2>
+                <p>Regularly tracking your spending helps you identify areas where you can cut back and save more money.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 7: Automate Your Savings</h2>
+                <p>Set up automatic transfers to your savings account to ensure you consistently save a portion of your income.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 8: Review Your Insurance Coverage</h2>
+                <p>Regularly review your insurance policies to ensure you have adequate coverage and are not overpaying for unnecessary coverage.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 9: Plan for Major Expenses</h2>
+                <p>Plan and save for major expenses, such as buying a car or home, to avoid taking on high-interest debt.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 10: Improve Your Credit Score</h2>
+                <p>Maintain a good credit score by paying your bills on time, keeping your credit card balances low, and avoiding unnecessary credit inquiries.</p>
+            </div>
+            <div class="tip">
+                <h2>Tip 11: Seek Professional Advice</h2>
+                <p>Consider consulting a financial advisor for personalized advice and strategies to achieve your financial goals.</p>
+            </div>
+        </div>
+    </main>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn"></span> <!-- Added a visible close icon -->
+            <iframe id="externalPage" src=""></iframe> <!-- iframe to load external page -->
+        </div>
+    </div>
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="modal">
+        <div id="logoutModal" class="modal-content">
+            <img src="budgetbunnylogo.png" alt="Bunny Logo" id="logoutModal"> 
+            <h2 id="logoutModal">Are you sure you want to log out?</h2>
+            <button id="logoutModal" class="logout-btn" onclick="confirmLogout()">Logout</button>
+            <button id="logoutModal" class="stay-btn" onclick="closeLogoutModal()">Stay</button>
+        </div>
+    </div>
+    <footer class="footer">
+    </footer>
+    <script src="learnpage.js"></script>
+</body>
+</html>
