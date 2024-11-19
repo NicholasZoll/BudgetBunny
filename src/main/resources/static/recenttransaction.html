@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Transactions</title>
+    <link rel="stylesheet" href="recenttransaction.css">
+</head>
+<body>
+    <header>
+        <h1>Recent Transactions</h1>
+    </header>
+    <main>
+        <table id="transactionTable">
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search ... "
+                    class="search-bar"
+                />
+                <button id="searchButton" class="search-button">Search</button>
+            </div>
+            
+            
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Envelope</th>
+                </tr>
+            </thead>
+            <tbody id="transactionTableBody">
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+        <br><br>
+        <div style="text-align: right;">
+            <button id="backButton">Back</button>
+        </div>
+        
+        
+    </main>
+    <script src="recenttransaction.js"></script>
+</body>
+</html>
