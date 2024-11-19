@@ -12,6 +12,17 @@
     </header>
     <main>
         <table id="transactionTable">
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search ... "
+                    class="search-bar"
+                />
+                <button id="searchButton" class="search-button">Search</button>
+            </div>
+            
+            
             <thead>
                 <tr>
                     <th>Title</th>
@@ -26,8 +37,9 @@
         </table>
         <br><br>
         <div style="text-align: right;">
-            <button onclick="goHome()">Back</button>
+            <button id="backButton">Back</button>
         </div>
+        
         
     </main>
     <script src="recenttransaction.js"></script>

@@ -13,15 +13,17 @@ header {
 }
 
 button {
-    background-color: white;
+    background-color: #1bb367;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    color: white;
+
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: #179c5a;
 }
 
 main {
@@ -47,4 +49,39 @@ th {
 
 tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+/* Adjust search bar size and alignment */
+.search-bar {
+    width: 70%; /* Adjust width as needed */
+    padding: 8px;
+    margin-right: 10px; /* Space between the bar and button */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle; /* Aligns with the button */
+}
+
+/* Style for the search button */
+.search-button {
+    padding: 8px 16px;
+    background-color: #85d5ad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle; /* Aligns with the search bar */
+}
+
+/* Hover effect for the button */
+.search-button:hover {
+    background-color: #7fc8a3;
+}
+
+/* Optional: Add some spacing below the search area */
+.search-container {
+    margin-bottom: 20px;
 }
