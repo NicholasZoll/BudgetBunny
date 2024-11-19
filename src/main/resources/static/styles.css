@@ -74,7 +74,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #67b491;
+    background-color: #81c0a5;
     grid-area: side;
     padding: 20px;
     display: flex;
@@ -103,7 +103,7 @@ body {
 
 .logo-img:hover {
     
-    background-color: #222529;
+    background-color: #ffffff;
     border-radius: 8px; /* Subtle hover effect */
     transition: background-color 0.3s ease-in-out;
 }
