@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #3b6954;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -42,7 +42,7 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #bcebd6;
 }
 
 tr:nth-child(even) {
