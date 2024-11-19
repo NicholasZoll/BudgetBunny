@@ -142,5 +142,3 @@ async function renderEnvelopeGraph() {
 document.addEventListener("DOMContentLoaded", function () {
     renderEnvelopeGraph();
 });
-
-

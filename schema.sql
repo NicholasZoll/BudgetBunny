@@ -38,5 +38,20 @@
 --     notes TEXT
 -- );
 
+-- CHANGES MADE TO THE SCHEMA
+
+-- add this helps make emails unique and password constraints
+-- ALTER TABLE users
+-- ADD CONSTRAINT check_password_strength
+-- CHECK (LENGTH(password) >= 8 AND password ~ '[0-9\W]');
+-- ALTER TABLE users
+-- ADD CONSTRAINT unique_email UNIQUE (email);
 
 
+-- if your current passwords are not meeting the requirements use these commands to change them
+-- SELECT * FROM users
+-- WHERE LENGTH(password) < 8 OR password !~ '[0-9\W]';
+
+-- UPDATE users
+-- SET password = 'TempPass123!' -- Example of a compliant password; consider a secure update process in practice
+-- WHERE LENGTH(password) < 8 OR password !~ '[0-9\W]';
