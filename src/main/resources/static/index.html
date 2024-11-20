@@ -12,8 +12,11 @@
 
     <header class="header">
         <div class="header-content">
-            <span class="user-text">Hi, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
-            <button class="profile-btn">👤</button>
+            <span class="dashboard-title">My Dashboard</span>
+            <span class="user-text">Greetings, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
+            <button class="profile-btn" id="profileBtn">
+                🥕
+            </button>
         </div>
     </header>
 
@@ -28,19 +31,15 @@
             <ul class="nav-list">
                 <li class="nav-item active">
                     <i class="icon">🏠</i>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <i class="icon">📊</i>
-                    <a href="#">Reports</a>
+                    <a href="index.html">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <i class="icon">📅</i>
-                    <a href="#">Help</a>
+                    <a href="helppage.html">Help</a>
                 </li>
                 <li class="nav-item">
                     <i class="icon">📂</i>
-                    <a href="#">Learn</a>
+                    <a href="learnpage.html">Learn</a>
                 </li>
                 <li>
 
@@ -102,7 +101,24 @@
                 console.error('Error fetching user information:', error);
             });
 
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/isLoggedIn')
+                .then(response => response.json())
+                .then(isLoggedIn => {
+                    if (!isLoggedIn) {
+                        window.location.href = 'loginaccount.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking login status:', error);
+                    window.location.href = 'loginaccount.html';
+                });
 
+            // event listener to profile button
+            document.getElementById('profileBtn').addEventListener('click', function() {
+                window.location.href = 'accountsettings.html';
+            });
+        });
         // Fetch the user's envelopes and display them - [NOT IMPLEMENTED, NOT SURE IF FUNCTIONAL]
         // fetch('/userEnvelopes')
         //     .then(response => response.json())
@@ -136,7 +152,20 @@
 
         // Redirect to the logout page when confirmed
         function confirmLogout() {
-            window.location.href = "loginaccount.html"; // Replace with actual logout URL or logic
+            fetch('/logout', {
+            method: 'POST',
+            credentials: 'same-origin' // Include credentials in the request
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'loginaccount.html'; // Redirect to the login page
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
         }
 
     </script>

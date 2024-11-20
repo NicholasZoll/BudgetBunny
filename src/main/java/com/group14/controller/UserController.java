@@ -43,6 +43,7 @@ public class UserController {
             session.setAttribute("username", user.get().getEmail());
             session.setAttribute("firstname", user.get().getFirstname());
             session.setAttribute("lastname", user.get().getLastname());
+            session.setAttribute("loggedIn", true);
             return ResponseEntity.ok("Login successful");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
@@ -80,4 +81,41 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate();
+        return ResponseEntity.ok("Logout successful");
+    }
+
+    @GetMapping("/isLoggedIn")
+    public ResponseEntity<Boolean> isLoggedIn(HttpSession session) {
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+        return ResponseEntity.ok(loggedIn != null && loggedIn);
+    }
+
+    @PostMapping("/changePassword")
+    public ResponseEntity<String> changePassword(HttpSession session, @RequestBody Map<String, String> request) {
+        String email = (String) session.getAttribute("username");
+        String currentPassword = request.get("currentPassword");
+        String newPassword = request.get("newPassword");
+    
+        if (email == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
+        }
+    
+        // Fetch the user from the database
+        Optional<User> userOptional = repository.findByEmail(email);
+        if (userOptional.isEmpty() || !currentPassword.equals(userOptional.get().getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Current password is incorrect");
+        }
+    
+        // Update the user's password
+        User user = userOptional.get();
+        user.setPassword(newPassword);
+        repository.save(user);
+    
+        return ResponseEntity.ok("Password changed successfully");
+    }
+
 }

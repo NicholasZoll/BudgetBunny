@@ -1,3 +1,64 @@
+
+.footer {
+    width: 100%;
+    background-color: #f5f6fa; /* Adjust the background color as needed */
+    text-align: center;
+    
+    position: fixed; /* Ensure the footer stays at the bottom */
+    bottom: 0;
+    left: 0;
+}
+.help-image {
+    display: block;
+    
+    border-radius: 5%;
+    margin: 20px auto; /* Center the image and add some margin */
+    max-width: 42%; /* Make sure the image is responsive */
+    height: auto; /* Maintain the aspect ratio */
+}
+.help-container {
+    border-radius: 20%;
+    background-color: #fff; /* 1118 */
+    padding: 20px;
+    font-size: large;
+}
+.help-container h1{
+    padding: 20px;
+
+    color: #3b6954;
+}
+.help-container p{
+    font-size: 22px;
+
+    color: #3b6954;
+}
+
+.help-container ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 2.5%;
+    padding-left: 0; /* Remove default padding */
+}
+
+.help-container ul li {
+    position: relative;
+    font-size: 20px;
+
+    color: #3b6954;
+    padding-left: 25px; /* Add space for the carrot emoji */
+    line-height: 1.8; /* Adjust the line height as needed */
+}
+
+.help-container ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sidebar .logout-container {
+    margin-bottom: 4%;
+}
+
 /* Reset CSS */
 * {
     margin: 0;
@@ -87,7 +148,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #81c0a5;
+    background-color: #67b491;
     grid-area: side;
     padding: 20px;
     display: flex;
@@ -116,7 +177,7 @@ body {
 
 .logo-img:hover {
     
-    background-color: #ffffff;
+    background-color: #222529;
     border-radius: 8px; /* Subtle hover effect */
     transition: background-color 0.3s ease-in-out;
 }
@@ -190,23 +251,15 @@ body {
     background-color: #3b6954;
     padding: 25px;
     grid-area: main;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
-        "c1 c1 c1 c2 c2"
-        "c1 c1 c1 c2 c2"
-        "c3 c3 c3 c2 c2"
-        "c3 c3 c3 c2 c2";
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    text-align: center; /* Center text horizontally */
 }
-
 
 /* Card Styles */
 .card {
-    display: flex; /* Enable flexbox layout */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
     background-color: #f6f7f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -219,13 +272,6 @@ body {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.card canvas {
-    width: auto; 
-    height: auto; 
-    display: block;
-    max-width: 90%; 
-    max-height: 90%; 
-}
 /* Card Placement */
 .card:nth-child(1) {
     grid-area: c1;
@@ -238,8 +284,6 @@ body {
 .card:nth-child(3) {
     grid-area: c3;
 }
-
-
 
 /* Responsive Design */
 @media (max-width: 925px) {
@@ -377,3 +421,4 @@ iframe {
 .openModal i {
     font-size: 20px;
 }
+
