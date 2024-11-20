@@ -142,3 +142,25 @@ async function renderEnvelopeGraph() {
 document.addEventListener("DOMContentLoaded", function () {
     renderEnvelopeGraph();
 });
+
+// Fetch transactions and populate the list
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/api/recent-transactions') // Replace with your Spring Boot endpoint
+        .then(response => response.json())
+        .then(data => {
+            const transactionsList = document.getElementById("recentTransactionsList");
+            data.forEach(transaction => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${transaction.date}: ${transaction.description} - $${transaction.amount}`;
+                transactionsList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching transactions:', error));
+});
+
+// Redirect to recenttransactions.html
+function redirectToTransactions() {
+    window.location.href = "/recenttransaction.html";
+}
+
+

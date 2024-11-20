@@ -67,7 +67,11 @@
     <main class="main">
         <div class="card"></div>
         <div class="card">
-            
+            <h3>Recent Transactions</h3>
+            <ul id="recentTransactionsList">
+                <!-- Transactions will be dynamically loaded here -->
+            </ul>
+            <button id="loadMoreButton" onclick="redirectToTransactions()">List More Transactions</button>
         </div>
         <div class="card">
             <canvas id="envelopeGraph"></canvas>

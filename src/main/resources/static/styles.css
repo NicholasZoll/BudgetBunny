@@ -226,7 +226,25 @@ body {
     grid-area: c3;
 }
 
+.card ul li {
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
 
+#loadMoreButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#loadMoreButton:hover {
+    background-color: #0056b3;
+}
 
 /* Responsive Design */
 @media (max-width: 925px) {
@@ -364,3 +382,4 @@ iframe {
 .openModal i {
     font-size: 20px;
 }
+

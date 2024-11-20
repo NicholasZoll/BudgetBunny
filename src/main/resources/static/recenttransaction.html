@@ -11,18 +11,17 @@
         <h1>Recent Transactions</h1>
     </header>
     <main>
+        <div class="search-container">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by Title, Envelope, or Date..."
+                class="search-bar"
+            />
+            <button id="searchButton" class="search-button">Search</button>
+        </div>
+
         <table id="transactionTable">
-            <div class="search-container">
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search ... "
-                    class="search-bar"
-                />
-                <button id="searchButton" class="search-button">Search</button>
-            </div>
-            
-            
             <thead>
                 <tr>
                     <th>Title</th>
@@ -32,15 +31,13 @@
                 </tr>
             </thead>
             <tbody id="transactionTableBody">
-                <!-- Rows will be dynamically added here -->
+                <!-- Rows dynamically populated via JS -->
             </tbody>
         </table>
-        <br><br>
-        <div style="text-align: right;">
-            <button id="backButton">Back</button>
+        
+        <div style="text-align: right; margin-top: 20px;">
+            <button id="backButton" class="button">Back</button>
         </div>
-        
-        
     </main>
     <script src="recenttransaction.js"></script>
 </body>
