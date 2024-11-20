@@ -31,10 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
-
+.env
 target/
 .mvn/wrapper/maven-wrapper.jar
+<<<<<<< HEAD
 
 # macOS files
 .DS_Store
 .env
+=======
+>>>>>>> 3b788e9 (Save local changes)
