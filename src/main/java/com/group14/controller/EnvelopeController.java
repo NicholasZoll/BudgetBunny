@@ -61,6 +61,7 @@ public class EnvelopeController {
             return envelopeRepository.save(envelopeDetails);
         });
     }
+    
 
     @DeleteMapping("/{id}")
     public void deleteEnvelope(@PathVariable Long id) {
@@ -78,4 +79,22 @@ public class EnvelopeController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
+
+
+    @PutMapping("/bulk-update")
+public ResponseEntity<?> updateEnvelopes(@RequestBody List<Envelope> envelopes) {
+    try {
+        for (Envelope envelope : envelopes) {
+            envelopeRepository.findById(envelope.getId()).ifPresent(existingEnvelope -> {
+                existingEnvelope.setName(envelope.getName());
+                existingEnvelope.setBudget(envelope.getBudget());
+                envelopeRepository.save(existingEnvelope);
+            });
+        }
+        return ResponseEntity.ok("Envelopes updated successfully.");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating envelopes.");
+    }
+}
+
 }

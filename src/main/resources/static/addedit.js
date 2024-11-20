@@ -40,12 +40,11 @@ function displayEnvelopes(envelopes, elementId) {
         const nameInput = document.createElement('input');
         nameInput.type = 'text';
         nameInput.value = envelope.name;
-        nameInput.disabled = true; // Make it non-editable for now
+        nameInput.dataset.id = envelope.id; // Store the envelope ID for later use
 
         const amountInput = document.createElement('input');
         amountInput.type = 'number';
         amountInput.value = envelope.budget;
-        amountInput.disabled = true;
 
         const deleteButton = document.createElement('button');
         deleteButton.innerHTML = 'Delete';
@@ -58,6 +57,7 @@ function displayEnvelopes(envelopes, elementId) {
         envelopeList.appendChild(envelopeForm);
     });
 }
+
 
 
 // Function to add a new envelope
@@ -97,6 +97,29 @@ async function deleteEnvelope(envelopeId) {
 }
 
 
+async function updateEnvelope(id, updatedData) {
+    try {
+        const response = await fetch(`/envelopes/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+        });
+
+        if (response.ok) {
+            alert('Envelope updated successfully!');
+            loadEnvelopes(); // Refresh the list
+        } else {
+            alert('Failed to update envelope. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error updating envelope:', error);
+        alert('An error occurred. Please try again.');
+    }
+}
+
+
 
 // Function to load accounts from localStorage
 function loadAccounts() {
@@ -112,32 +135,48 @@ function loadAccounts() {
     });
 }
 
-// Function to save changes (both envelopes and accounts)
-function saveChanges() {
-    const monthlyEnvelopes = [];
-    const annualEnvelopes = [];
+async function saveChanges() {
+    const envelopesToUpdate = [];
 
-    document.querySelectorAll('#monthly-envelopes .envelope-form').forEach(form => {
-        const name = form.querySelector('input[type="text"]').value;
-        const amount = form.querySelector('input[type="number"]').value;
-        if (name && amount) {
-            monthlyEnvelopes.push({ name, amount });
+    // Gather all envelopes from both sections
+    document.querySelectorAll('.envelope-form').forEach(form => {
+        const nameInput = form.querySelector('input[type="text"]');
+        const amountInput = form.querySelector('input[type="number"]');
+        const envelopeId = nameInput.dataset.id;
+
+        if (envelopeId && nameInput.value && amountInput.value) {
+            envelopesToUpdate.push({
+                id: envelopeId,
+                name: nameInput.value,
+                budget: parseFloat(amountInput.value),
+            });
         }
     });
 
-    document.querySelectorAll('#annual-envelopes .envelope-form').forEach(form => {
-        const name = form.querySelector('input[type="text"]').value;
-        const amount = form.querySelector('input[type="number"]').value;
-        if (name && amount) {
-            annualEnvelopes.push({ name, amount });
+    try {
+        // Send bulk update to the server
+        const response = await fetch('/envelopes/bulk-update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(envelopesToUpdate),
+        });
+
+        if (response.ok) {
+            alert('All changes saved successfully!');
+            loadEnvelopes(); // Refresh the envelopes
+        } else {
+            alert('Failed to save changes. Please try again.');
         }
-    });
-
-    localStorage.setItem('monthlyEnvelopes', JSON.stringify(monthlyEnvelopes));
-    localStorage.setItem('annualEnvelopes', JSON.stringify(annualEnvelopes));
-
-    alert('Envelopes saved successfully!');
+    } catch (error) {
+        console.error('Error saving changes:', error);
+        alert('An error occurred while saving changes.');
+    }
 }
+
+
+
 function showEnvelopeForm(type) {
     const modal = document.getElementById('envelope-form-modal');
     const formTitle = document.getElementById('form-title');
