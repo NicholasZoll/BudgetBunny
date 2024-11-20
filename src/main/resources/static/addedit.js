@@ -20,11 +20,12 @@ function initPage() {
 }
 
 // Function to load envelopes from localStorage
-function loadEnvelopes() {
-    const monthlyEnvelopes = JSON.parse(localStorage.getItem('monthlyEnvelopes')) || [];
+async function loadEnvelopes() {
+    const envelopes = await fetch('/envelopes/userEnvelopes').then(e => e.json());
+    console.log(envelopes);
     const annualEnvelopes = JSON.parse(localStorage.getItem('annualEnvelopes')) || [];
 
-    displayEnvelopes(monthlyEnvelopes, 'monthly-envelopes');
+    displayEnvelopes(envelopes, 'monthly-envelopes');
     displayEnvelopes(annualEnvelopes, 'annual-envelopes');
 }
 
@@ -43,7 +44,7 @@ function displayEnvelopes(envelopes, elementId) {
 
         const amountInput = document.createElement('input');
         amountInput.type = 'number';
-        amountInput.value = envelope.amount;
+        amountInput.value = envelope.budget;
 
         const deleteButton = document.createElement('button');
         deleteButton.innerHTML = 'Delete';
@@ -58,12 +59,17 @@ function displayEnvelopes(envelopes, elementId) {
 }
 
 // Function to add a new envelope
-function addEnvelope(type) {
-    const envelopes = JSON.parse(localStorage.getItem(`${type}Envelopes`)) || [];
-    envelopes.push({ name: '', amount: '' }); // Add an empty envelope
-    localStorage.setItem(`${type}Envelopes`, JSON.stringify(envelopes));
-
-    loadEnvelopes(); // Refresh the display
+async function addEnvelope(type) {
+    const label = prompt('Enter the name of the envelope:');
+    const budget = prompt('Enter the budget for this envelope:');
+    await fetch ('/envelopes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name: label, budget, spent:0})
+    })
+    loadEnvelopes();
 }
 
 // Function to delete an envelope
@@ -114,6 +120,37 @@ function saveChanges() {
     localStorage.setItem('annualEnvelopes', JSON.stringify(annualEnvelopes));
 
     alert('Envelopes saved successfully!');
+}
+function showEnvelopeForm(type) {
+    const modal = document.getElementById('envelope-form-modal');
+    const formTitle = document.getElementById('form-title');
+    modal.classList.remove('hidden');
+    formTitle.textContent = `Add ${type === 'monthly' ? 'Monthly' : 'Annual'} Envelope`;
+
+    const form = document.getElementById('envelope-form');
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('envelope-name').value;
+        const budget = document.getElementById('envelope-budget').value;
+
+        // Post data to server
+        await fetch('/envelopes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, budget, spent: 0 }),
+        });
+
+        hideEnvelopeForm();
+        loadEnvelopes();
+    };
+}
+
+function hideEnvelopeForm() {
+    const modal = document.getElementById('envelope-form-modal');
+    modal.classList.add('hidden');
+    document.getElementById('envelope-form').reset();
 }
 
 // Helper function to navigate home

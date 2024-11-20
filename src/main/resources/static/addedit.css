@@ -164,3 +164,48 @@ body::-webkit-scrollbar-thumb {
     border: 5px solid transparent; /* Adds space around the handle */
     
 }
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.modal label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #3b6954;
+}
+
+.modal input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal button {
+    margin-top: 10px;
+}
