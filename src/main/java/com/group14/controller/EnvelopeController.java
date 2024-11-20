@@ -66,6 +66,7 @@ public class EnvelopeController {
     public void deleteEnvelope(@PathVariable Long id) {
         envelopeRepository.deleteById(id);
     }
+    
 
     @GetMapping("/userEnvelopes")
     public ResponseEntity<List<Envelope>> getUserEnvelopes(HttpSession session) {
