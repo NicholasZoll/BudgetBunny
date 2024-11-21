@@ -36,10 +36,34 @@ public class TransactionController {
         return transactionRepository.findById(id);
     }
 
+
+    
     @PostMapping
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
-        return transactionRepository.save(transaction);
+    public ResponseEntity<?> createTransaction(@RequestBody Transaction transaction) {
+        try {
+            // Log incoming transaction for debugging
+            System.out.println("Incoming Transaction: " + transaction);
+    
+            // Validate required fields
+            if (transaction.getTitle() == null || transaction.getDate() == null || transaction.getAmount() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing required fields.");
+            }
+    
+            // Save transaction to the database
+            Transaction savedTransaction = transactionRepository.save(transaction);
+    
+            // Return saved transaction
+            return ResponseEntity.ok(savedTransaction);
+        } catch (Exception e) {
+            System.err.println("Error saving transaction: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
     }
+    
+    
+    
+
+    
 
     @PutMapping("/{id}")
     public Transaction updateTransaction(@PathVariable Long id, @RequestBody Transaction transactionDetails) {
