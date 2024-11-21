@@ -34,10 +34,12 @@
                     <a href="index.html">Dashboard</a>
                 </li>
                 <li class="nav-item">
+
                     <i class="icon">🧾</i>
                     <a href="recenttransaction.html">Recent Transactions</a>
                 </li>
                 <li class="nav-item">
+
                     <i class="icon">📅</i>
                     <a href="helppage.html">Help</a>
                 </li>
@@ -73,7 +75,11 @@
     <main class="main">
         <div class="card"></div>
         <div class="card">
-            
+            <h3>Recent Transactions</h3>
+            <ul id="recentTransactionsList">
+                <!-- Transactions will be dynamically loaded here -->
+            </ul>
+            <button id="loadMoreButton" onclick="redirectToTransactions()">List More Transactions</button>
         </div>
         <div class="card">
             <canvas id="envelopeGraph"></canvas>

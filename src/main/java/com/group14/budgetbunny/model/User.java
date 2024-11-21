@@ -29,4 +29,3 @@ public class User {
     @Column(name = "lastname", nullable = false)
     private String lastname;
 }
-
