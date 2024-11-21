@@ -36,7 +36,8 @@
 // }
 
 
-document.addEventListener('DOMContentLoaded', function () {
+    console.log('document loaded');
+
     const tableBody = document.getElementById('transactionTableBody');
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the search button
     searchButton.addEventListener('click', function () {
         const searchQuery = searchInput.value.trim();
-        loadTransactionsAndIncomes(searchQuery);
+        loadRecentTransactions(searchQuery);
     });
 
     // Trigger search on pressing 'Enter' key
@@ -129,14 +130,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent the default behavior of Enter key
             const searchQuery = searchInput.value.trim();
-            loadTransactionsAndIncomes(searchQuery);
+            loadRecentTransactions(searchQuery);
         }
     });
 
     // Reset the table when the search bar is cleared
     searchInput.addEventListener('input', function () {
         if (searchInput.value.trim() === "") {
-            loadTransactionsAndIncomes();
+            loadRecentTransactions();
         }
     });
 
@@ -149,10 +150,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Failed to fetch transactions.');
                 return;
             }
+            console.log('response', response);
     
             const transactions = await response.json();
             const tableBody = document.getElementById('transactionTableBody');
             tableBody.innerHTML = ''; // Clear existing rows
+            console.log('transactions', transactions);
     
             transactions
                 .filter(transaction =>
@@ -160,11 +163,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     transaction.title.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .forEach(transaction => {
+                    const date = new Date(transaction.date);
+                    // Format date as "MM/DD/YYYY"
+                    const formatter = new Intl.DateTimeFormat('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                    });
+                    const formattedDate = formatter.format(date);
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${transaction.title}</td>
-                        <td>${new Date(transaction.date).toLocaleDateString()}</td>
-                        <td>$${transaction.amount}</td>
+                        <td>${formattedDate}</td>
+                        <td>${transaction.amount < 0 ? '+' : ''}$${Math.abs(transaction.amount)}</td>
                         <td>${transaction.envelope ? transaction.envelope.name : 'N/A'}</td>
                     `;
                     tableBody.appendChild(row);
@@ -181,21 +192,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     // Load transactions on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        loadRecentTransactions();
-    
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        searchButton.addEventListener('click', () => {
-            const query = searchInput.value.trim();
-            loadRecentTransactions(query);
-        });
+    loadRecentTransactions();
+
+    // Search functionality
+    searchButton.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        loadRecentTransactions(query);
     });
-    
-
-
 
     // Initialize the table on page load
-    loadTransactionsAndIncomes();
-});
+    //loadTransactionsAndIncomes();

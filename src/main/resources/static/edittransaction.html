@@ -8,10 +8,10 @@
 </head>
 <body>
     <!-- Transparent background, click outside to go home -->
-    <div class="transparent-background" onclick="goHome()"></div>
+    <div class="transparent-background" onclick="closeModal()"></div>
 
     <div class="container">
-        <button class="close-btn" onclick="goHome()">✖</button>
+        <button class="close-btn" onclick="closeModal()">✖</button>
         <h1>Edit Transaction</h1>
 
         <label for="transactionSelect">Select a transaction:</label>
@@ -32,8 +32,10 @@
             <label for="editEnvelope">Envelope:</label>
             <select id="editEnvelope" ></select>
 
+            <!--
             <label for="editAccount">Account:</label>
             <select id="editAccount"></select>
+            -->
 
             <label for="editNotes">Notes:</label>
             <textarea id="editNotes" rows="4" placeholder="Optional Description"></textarea>

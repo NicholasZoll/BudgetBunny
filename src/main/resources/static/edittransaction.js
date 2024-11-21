@@ -15,7 +15,7 @@ function closeModal() {
 // Function to initialize the envelope, account lists, and transactions
 function initPage() {
     loadEnvelopes(); // Load both monthly and annual envelopes
-    loadAccounts();  // Load accounts
+    //loadAccounts();  // Load accounts
     loadTransactions(); // Load all transactions
 }
 
@@ -33,7 +33,10 @@ async function loadTransactions() {
 
         // Process transactions
         data.forEach(transaction => {
-            // Add to dropdown or table
+            const option = document.createElement('option');
+            option.value = transaction.id;
+            option.innerHTML = transaction.title;
+            document.getElementById('transactionSelect').appendChild(option);
         });
     } catch (error) {
         console.error('Error loading transactions:', error);
@@ -44,7 +47,7 @@ async function loadTransactions() {
 // Function to load envelopes from the server
 async function loadEnvelopes() {
     try {
-        const envelopeDropdown = document.getElementById('envelope-dropdown'); // Ensure it's defined inside the function
+        const envelopeDropdown = document.getElementById('editEnvelope'); // Ensure it's defined inside the function
         if (!envelopeDropdown) {
             throw new Error('Envelope dropdown element not found.');
         }
@@ -97,12 +100,12 @@ async function populateTransactionForm() {
         }
 
         const transaction = await response.json();
+        console.log(transaction);
         document.getElementById('editTitle').value = transaction.title;
         document.getElementById('editDate').value = transaction.date;
         document.getElementById('editAmount').value = transaction.amount;
         document.getElementById('editEnvelope').value = transaction.envelope?.id || '';
-        document.getElementById('editAccount').value = transaction.account?.id || '';
-        document.getElementById('editNotes').value = transaction.notes || '';
+        document.getElementById('editNotes').innerHTML = transaction.notes || '';
     } catch (error) {
         console.error('Error populating transaction form:', error);
     }
@@ -121,7 +124,7 @@ async function saveTransaction() {
         date: document.getElementById('editDate').value,
         amount: parseFloat(document.getElementById('editAmount').value),
         envelope: { id: document.getElementById('editEnvelope').value },
-        account: { id: document.getElementById('editAccount').value },
+        //account: { id: document.getElementById('editAccount').value },
         notes: document.getElementById('editNotes').value,
     };
 

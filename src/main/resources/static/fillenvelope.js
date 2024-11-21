@@ -24,41 +24,52 @@ const fillOptionFill = document.getElementById('fillUp');
 const amountInput = document.getElementById('amount');
 const envelopeDropdown = document.getElementById('envelope-dropdown');
 
-// Update the amount based on selected fill option
-function updateAmountField() {
-    const selectedEnvelope = envelopeDropdown.options[envelopeDropdown.selectedIndex];
-    const maxAmount = selectedEnvelope.getAttribute('data-max');
+fetch('/envelopes/userEnvelopes').then(r => r.json()).then(envelopes => {
+    envelopes.forEach(envelope => {
+        const option = document.createElement('option');
+        option.value = envelope.id;
+        option.setAttribute('data-spent', envelope.spent.toString());
+        option.textContent = envelope.name;
+        envelopeDropdown.appendChild(option);
+    });
+});
 
-    if (fillOptionFill.checked) {
-        // Automatically fill the amount to max if "Fill Up" is selected
-        amountInput.value = maxAmount;
-        amountInput.disabled = true; // Disable manual input
-    } else {
-        // Allow manual input if "Add" is selected
-        amountInput.value = '';
-        amountInput.disabled = false;
-    }
+function showHideAmount() {
+    amountInput.style.visibility = fillOptionAdd.checked ? 'visible' : 'hidden';
 }
 
-// Attach event listeners to radio buttons and envelope dropdown
-fillOptionAdd.addEventListener('change', updateAmountField);
-fillOptionFill.addEventListener('change', updateAmountField);
-envelopeDropdown.addEventListener('change', updateAmountField);
+setInterval(showHideAmount, 100);
 
-// Initial update on page load
-window.onload = updateAmountField;
-
-function submitForm() {
+async function submitForm() {
     const selectedEnvelope = envelopeDropdown.value;
     const date = document.getElementById('date').value;
     const amount = amountInput.value;
     const notes = document.getElementById('notes').value;
+    const isAdd = document.getElementById('addAmount').checked;
+    const envelopeDom = envelopeDropdown.selectedOptions[0];
 
-    if (!date || !amount) {
+    if (isAdd && (!date || !amount) || !isAdd && !date) {
         alert('Please fill in all required fields.');
         return;
     }
 
-    console.log(`Saving data:\nEnvelope: ${selectedEnvelope}\nAmount: $${amount}\nDate: ${date}\nNotes: ${notes}`);
+    const transaction = {
+        title: 'Filled Envelope',
+        date,
+        amount: isAdd ? -parseFloat(amount) : -Number(envelopeDom.getAttribute('data-spent')),
+        envelope: { id: Number(selectedEnvelope) },
+        // account: { id: document.getElementById('account-dropdown').value },
+        notes,
+    };
+    try {
+        const response = await fetch('/transactions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(transaction),
+        });
+        alert('Filled envelope successfully!');
+    } catch (e) {
+        alert('Failed to fill envelope. Please try again.');
+    }
     // Here you would handle form submission logic, e.g., saving the data or sending it to a server.
 }

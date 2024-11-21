@@ -7,7 +7,6 @@
 
 /* Body and Layout */
 body {
-    height: 100vh;
     display: grid;
     grid-template-columns: 300px 1fr;
     grid-template-rows: 60px 1fr;
@@ -191,22 +190,15 @@ body {
     padding: 25px;
     grid-area: main;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
-        "c1 c1 c1 c2 c2"
-        "c1 c1 c1 c2 c2"
-        "c3 c3 c3 c2 c2"
-        "c3 c3 c3 c2 c2";
+    grid-template-rows: repeat(auto, 4);
     gap: 20px;
 }
-
 
 /* Card Styles */
 .card {
     display: flex; /* Enable flexbox layout */
     justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    align-items: start; /* Center vertically */
     background-color: #f6f7f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -226,19 +218,27 @@ body {
     max-width: 90%; 
     max-height: 90%; 
 }
-/* Card Placement */
-.card:nth-child(1) {
-    grid-area: c1;
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
 }
 
-.card:nth-child(2) {
-    grid-area: c2;
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
 }
 
-.card:nth-child(3) {
-    grid-area: c3;
+th {
+    background-color: #bcebd6;
 }
 
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
 
 /* Responsive Design */
@@ -256,8 +256,6 @@ body {
     }
 
     .main {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
         gap: 15px;
     }
 }
@@ -376,4 +374,58 @@ iframe {
 
 .openModal i {
     font-size: 20px;
+}
+
+.envelope-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.envelope-row .left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 8px;
+}
+
+.envelope-row .left .title {
+    font-size: 1.3em;
+}
+
+.envelope-row .bar {
+    background: rgb(211, 211, 211);
+    border: 2px solid gray;
+    overflow: hidden;
+}
+
+.envelope-row .bar > div {
+    background: green;
+}
+
+.envelope-row .spent {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.envelope-row .budget {
+    font-size: 0.9em;
+}
+
+.envelope-row .labels {
+    width: 100px;
+}
+
+#envelopes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.card-header {
+    color: rgb(219, 255, 219);
 }
