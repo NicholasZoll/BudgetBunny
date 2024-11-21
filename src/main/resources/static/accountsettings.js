@@ -29,6 +29,58 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = 'accountsettings.html';
     });
 
+
+
+    document.getElementById('changePasswordForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+        if (newPassword !== confirmNewPassword) {
+            alert('New passwords do not match.');
+            return;
+        }
+
+        const data = {
+            currentPassword: currentPassword,
+            newPassword: newPassword
+        };
+
+        fetch('/changePassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Password change failed');
+            }
+            return response.text(); // Use response.text() instead of response.json()
+        })
+        .then(data => {
+            alert('Password changed successfully!');
+            document.getElementById('changePasswordForm').reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to change password. You may have inputted your current password incorrectly. Please try again.');
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
     // Modal Logic
     const modal = document.getElementById('myModal');
     const iframe = document.getElementById('externalPage');
