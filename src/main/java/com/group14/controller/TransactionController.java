@@ -6,7 +6,6 @@ import com.group14.budgetbunny.repository.TransactionRepository;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +29,6 @@ public class TransactionController {
     @GetMapping
     public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
-    }
-
-    @GetMapping("/recent")
-    public ResponseEntity<List<Transaction>> getRecentTransactions(HttpSession session,
-                                                                    @RequestParam(defaultValue = "0") int page,
-                                                                    @RequestParam(defaultValue = "10") int size) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
-        PageRequest pageable = PageRequest.of(page, size); // Define pagination
-        List<Transaction> transactions = transactionRepository.findTopNByUserIdOrderByDateDesc(userId, pageable);
-        System.out.println("Session User ID: " + session.getAttribute("userId"));
-
-        return ResponseEntity.ok(transactions);
     }
 
     @GetMapping("/{id}")
@@ -113,5 +96,4 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
-    
 }
