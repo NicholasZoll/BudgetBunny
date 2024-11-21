@@ -98,15 +98,14 @@ public class EnvelopeController {
         }
     }
 
-
     @PutMapping("/{id}/updateBalance")
     public ResponseEntity<?> updateEnvelopeBalance(@PathVariable Long id, @RequestBody BigDecimal amount) {
         Optional<Envelope> optionalEnvelope = envelopeRepository.findById(id);
         if (optionalEnvelope.isPresent()) {
             Envelope envelope = optionalEnvelope.get();
-            BigDecimal newSpent = envelope.getSpent().add(amount);
-            if (newSpent.compareTo(envelope.getBudget()) > 0) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount exceeds budget");
+            BigDecimal newSpent = envelope.getSpent().subtract(amount);
+            if (newSpent.compareTo(BigDecimal.ZERO) < 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount exceeds available spent balance");
             }
             envelope.setSpent(newSpent);
             envelopeRepository.save(envelope);

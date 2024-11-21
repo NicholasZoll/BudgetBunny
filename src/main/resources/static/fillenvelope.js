@@ -57,6 +57,7 @@ window.onload = async function() {
 
 
 
+// Function to load envelopes from the server
 async function loadEnvelopes() {
     try {
         const response = await fetch('/envelopes/userEnvelopes');
@@ -90,11 +91,10 @@ async function submitForm() {
     }
 
     const selectedOption = envelopeDropdown.options[envelopeDropdown.selectedIndex];
-    const maxAmount = parseFloat(selectedOption.getAttribute('data-max'));
     const currentSpent = parseFloat(selectedOption.getAttribute('data-spent'));
 
-    if (amount + currentSpent > maxAmount) {
-        alert('Amount exceeds the budget.');
+    if (amount > currentSpent) {
+        alert('Amount exceeds the available spent balance.');
         return;
     }
 
