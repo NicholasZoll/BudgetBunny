@@ -1,298 +1,177 @@
-// // Function to close the modal and clear the iframe NOTE: this only works in live server due to browsers enforce security measures that block access to resources from different origins, while using a live server removes these restrictions
-// function closeModal() {
-//     const modal = window.parent.document.getElementById('myModal'); // Access the modal in the parent document
-//     const iframe = window.parent.document.getElementById('externalPage'); // Access the iframe in the parent document
-
-//     if (modal) {
-//         modal.style.display = "none"; // Close the modal
-//     }
-
-//     if (iframe) {
-//         iframe.src = ""; // Clear the iframe's src
-//     }
-// }
-
-// // Helper function to navigate home
-// function goHome() {
-//     closeModal(); // Close the modal and clear iframe
-//     window.location.href = 'index.html'; // Navigate to home page
-// }
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     const transactionSelect = document.getElementById('transactionSelect');
-
-//     // Load accounts and envelopes
-//     loadAccounts();
-//     loadEnvelopes();
-//     loadTransactions(); // Load transactions into the dropdown
-
-//     // Function to load transactions into the dropdown
-//     function loadTransactions() {
-//         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-//         transactionSelect.innerHTML = '<option value="">Select a transaction</option>';
-        
-//         transactions.forEach((transaction, index) => {
-//             const option = document.createElement('option');
-//             option.value = index;
-//             option.textContent = `${transaction.title} - $${transaction.amount}`;
-//             transactionSelect.appendChild(option);
-//         });
-//     }
-
-//     // Function to load envelopes into the dropdown
-//     function loadEnvelopes() {
-//         const envelopeDropdown = document.getElementById('editEnvelope');
-//         const monthlyEnvelopes = JSON.parse(localStorage.getItem('monthlyEnvelopes')) || [];
-//         const annualEnvelopes = JSON.parse(localStorage.getItem('annualEnvelopes')) || [];
-
-//         envelopeDropdown.innerHTML = ''; // Clear any existing options
-
-//         // Create options for monthly envelopes
-//         monthlyEnvelopes.forEach(envelope => {
-//             const option = document.createElement('option');
-//             option.value = envelope.name;
-//             option.textContent = `${envelope.name} (Monthly)`;
-//             envelopeDropdown.appendChild(option);
-//         });
-
-//         // Create options for annual envelopes
-//         annualEnvelopes.forEach(envelope => {
-//             const option = document.createElement('option');
-//             option.value = envelope.name;
-//             option.textContent = `${envelope.name} (Annual)`;
-//             envelopeDropdown.appendChild(option);
-//         });
-//     }
-
-//     // Function to load accounts from localStorage
-//     function loadAccounts() {
-//         const accountSelect = document.getElementById('editAccount');
-//         const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-
-//         accountSelect.innerHTML = ''; // Clear existing options
-
-//         accounts.forEach(account => {
-//             const option = document.createElement('option');
-//             option.value = account.title; // Ensure value is the title for proper linking
-//             option.textContent = `${account.title} - $${account.amount || 0}`;
-//             accountSelect.appendChild(option);
-//         });
-//     }
-
-//     // Populate form when a transaction is selected
-//     transactionSelect.addEventListener('change', function () {
-//         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-//         const selectedTransaction = transactions[this.value];
-
-//         if (selectedTransaction) {
-//             document.getElementById('editTitle').value = selectedTransaction.title;
-//             document.getElementById('editDate').value = selectedTransaction.date;
-//             document.getElementById('editAmount').value = selectedTransaction.amount;
-//             document.getElementById('editEnvelope').value = selectedTransaction.envelope;
-//             document.getElementById('editAccount').value = selectedTransaction.account;
-//             document.getElementById('editNotes').value = selectedTransaction.notes;
-//         }
-//     });
-
-//     // Save changes to the selected transaction
-//     document.getElementById('save-btn').addEventListener('click', function () {
-//         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-//         const selectedIndex = transactionSelect.value;
-
-//         if (selectedIndex !== '') {
-//             transactions[selectedIndex] = {
-//                 title: document.getElementById('editTitle').value,
-//                 date: document.getElementById('editDate').value,
-//                 amount: parseFloat(document.getElementById('editAmount').value),
-//                 envelope: document.getElementById('editEnvelope').value,
-//                 account: document.getElementById('editAccount').value,
-//                 notes: document.getElementById('editNotes').value
-//             };
-
-//             localStorage.setItem('transactions', JSON.stringify(transactions));
-//             alert('Transaction updated successfully!');
-//             loadTransactions(); // Reload the transactions in the dropdown
-//         } else {
-//             alert('Please select a transaction to edit.');
-//         }
-//     });
-
-//     // Delete the selected transaction
-//     document.getElementById('delete-btn').addEventListener('click', function () {
-//         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-//         const selectedIndex = transactionSelect.value;
-
-//         if (selectedIndex !== '') {
-//             transactions.splice(selectedIndex, 1);
-//             localStorage.setItem('transactions', JSON.stringify(transactions));
-//             alert('Transaction deleted successfully!');
-//             loadTransactions(); // Reload the transactions in the dropdown
-//             document.getElementById('editTransactionForm').reset();
-//         } else {
-//             alert('Please select a transaction to delete.');
-//         }
-//     });
-// });
-
-
-
-// Function to close the modal and clear the iframe
+// Function to close the modal and clear the iframe NOTE: this only works in live server due to browsers enforcing security measures that block access to resources from different origins, while using a live server removes these restrictions
 function closeModal() {
-    const modal = window.parent.document.getElementById('myModal');
-    const iframe = window.parent.document.getElementById('externalPage');
+    const modal = window.parent.document.getElementById('myModal'); // Access the modal in the parent document
+    const iframe = window.parent.document.getElementById('externalPage'); // Access the iframe in the parent document
 
     if (modal) {
-        modal.style.display = "none";
+        modal.style.display = "none"; // Close the modal
     }
 
     if (iframe) {
-        iframe.src = "";
+        iframe.src = ""; // Clear the iframe's src
     }
 }
 
-// Helper function to navigate home
-function goHome() {
-    closeModal();
-    window.location.href = 'index.html';
+// Function to initialize the envelope, account lists, and transactions
+function initPage() {
+    loadEnvelopes(); // Load both monthly and annual envelopes
+    loadAccounts();  // Load accounts
+    loadTransactions(); // Load all transactions
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const transactionSelect = document.getElementById('transactionSelect');
-    const editForm = {
-        title: document.getElementById('editTitle'),
-        date: document.getElementById('editDate'),
-        amount: document.getElementById('editAmount'),
-        envelope: document.getElementById('editEnvelope'),
-        account: document.getElementById('editAccount'),
-        notes: document.getElementById('editNotes'),
+// Function to load transactions and populate the dropdown
+async function loadTransactions() {
+    try {
+        const response = await fetch('/transactions/userTransactions');
+        const data = await response.json();
+
+        console.log('Fetched Data:', data); // Debug response
+
+        if (!Array.isArray(data)) {
+            throw new Error('Expected an array but got: ' + typeof data);
+        }
+
+        // Process transactions
+        data.forEach(transaction => {
+            // Add to dropdown or table
+        });
+    } catch (error) {
+        console.error('Error loading transactions:', error);
+    }
+}
+
+
+// Function to load envelopes from the server
+async function loadEnvelopes() {
+    try {
+        const envelopeDropdown = document.getElementById('envelope-dropdown'); // Ensure it's defined inside the function
+        if (!envelopeDropdown) {
+            throw new Error('Envelope dropdown element not found.');
+        }
+        envelopeDropdown.innerHTML = ''; // Clear dropdown options
+
+        const response = await fetch('/envelopes/userEnvelopes');
+        const envelopes = await response.json();
+
+        console.log('Fetched Envelopes:', envelopes); // Debugging
+
+        envelopes.forEach(envelope => {
+            const option = document.createElement('option');
+            option.value = envelope.id;
+            option.textContent = envelope.name;
+            envelopeDropdown.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading envelopes:', error);
+    }
+}
+
+
+// Function to load accounts from local storage (or modify for server if needed)
+function loadAccounts() {
+    const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+    const accountDropdown = document.getElementById('editAccount');
+    accountDropdown.innerHTML = '<option value="">Select an account</option>'; // Reset dropdown
+
+    accounts.forEach(account => {
+        const option = document.createElement('option');
+        option.value = account.id; // Use account ID for better linking
+        option.textContent = account.name;
+        accountDropdown.appendChild(option);
+    });
+}
+
+// Function to populate the transaction form on selection
+async function populateTransactionForm() {
+    const transactionId = document.getElementById('transactionSelect').value;
+    if (!transactionId) {
+        document.getElementById('editTransactionForm').reset(); // Clear form if no selection
+        return;
+    }
+
+    try {
+        const response = await fetch(`/transactions/${transactionId}`);
+        if (!response.ok) {
+            console.error('Failed to fetch transaction details.');
+            return;
+        }
+
+        const transaction = await response.json();
+        document.getElementById('editTitle').value = transaction.title;
+        document.getElementById('editDate').value = transaction.date;
+        document.getElementById('editAmount').value = transaction.amount;
+        document.getElementById('editEnvelope').value = transaction.envelope?.id || '';
+        document.getElementById('editAccount').value = transaction.account?.id || '';
+        document.getElementById('editNotes').value = transaction.notes || '';
+    } catch (error) {
+        console.error('Error populating transaction form:', error);
+    }
+}
+
+// Function to save changes to the selected transaction
+async function saveTransaction() {
+    const transactionId = document.getElementById('transactionSelect').value;
+    if (!transactionId) {
+        alert('Please select a transaction to edit.');
+        return;
+    }
+
+    const updatedTransaction = {
+        title: document.getElementById('editTitle').value,
+        date: document.getElementById('editDate').value,
+        amount: parseFloat(document.getElementById('editAmount').value),
+        envelope: { id: document.getElementById('editEnvelope').value },
+        account: { id: document.getElementById('editAccount').value },
+        notes: document.getElementById('editNotes').value,
     };
 
-    loadAccounts();
-    loadEnvelopes();
-    loadTransactions();
-
-    // Helper function to get query parameter
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    // Function to load transactions into the dropdown
-    function loadTransactions() {
-        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-        transactionSelect.innerHTML = '<option value="">Select a transaction</option>';
-
-        transactions.forEach((transaction, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = `${transaction.title} - $${transaction.amount}`;
-            transactionSelect.appendChild(option);
+    try {
+        const response = await fetch(`/transactions/${transactionId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedTransaction),
         });
 
-        // Check if an ID is passed in the URL
-        const transactionId = getQueryParam('id');
-        if (transactionId) {
-            const transaction = transactions[transactionId];
-            if (transaction) {
-                populateForm(transaction);
-            }
-        }
-    }
-
-    // Function to populate form with transaction data
-    function populateForm(transaction) {
-        editForm.title.value = transaction.title || '';
-        editForm.date.value = transaction.date || '';
-        editForm.amount.value = transaction.amount || '';
-        editForm.envelope.value = transaction.envelope || '';
-        editForm.account.value = transaction.account || '';
-        editForm.notes.value = transaction.notes || '';
-    }
-
-    // Function to load envelopes into the dropdown
-    function loadEnvelopes() {
-        const envelopeDropdown = document.getElementById('editEnvelope');
-        const monthlyEnvelopes = JSON.parse(localStorage.getItem('monthlyEnvelopes')) || [];
-        const annualEnvelopes = JSON.parse(localStorage.getItem('annualEnvelopes')) || [];
-
-        envelopeDropdown.innerHTML = '';
-
-        monthlyEnvelopes.forEach(envelope => {
-            const option = document.createElement('option');
-            option.value = envelope.name;
-            option.textContent = `${envelope.name} (Monthly)`;
-            envelopeDropdown.appendChild(option);
-        });
-
-        annualEnvelopes.forEach(envelope => {
-            const option = document.createElement('option');
-            option.value = envelope.name;
-            option.textContent = `${envelope.name} (Annual)`;
-            envelopeDropdown.appendChild(option);
-        });
-    }
-
-    // Function to load accounts into the dropdown
-    function loadAccounts() {
-        const accountSelect = document.getElementById('editAccount');
-        const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-
-        accountSelect.innerHTML = '';
-
-        accounts.forEach(account => {
-            const option = document.createElement('option');
-            option.value = account.title;
-            option.textContent = `${account.title} - $${account.amount || 0}`;
-            accountSelect.appendChild(option);
-        });
-    }
-
-    // Handle dropdown selection
-    transactionSelect.addEventListener('change', function () {
-        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-        const selectedTransaction = transactions[this.value];
-
-        if (selectedTransaction) {
-            populateForm(selectedTransaction);
-        }
-    });
-
-    // Save changes
-    document.getElementById('save-btn').addEventListener('click', function () {
-        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-        const selectedIndex = transactionSelect.value;
-
-        if (selectedIndex !== '') {
-            transactions[selectedIndex] = {
-                title: editForm.title.value,
-                date: editForm.date.value,
-                amount: parseFloat(editForm.amount.value),
-                envelope: editForm.envelope.value,
-                account: editForm.account.value,
-                notes: editForm.notes.value,
-            };
-
-            localStorage.setItem('transactions', JSON.stringify(transactions));
+        if (response.ok) {
             alert('Transaction updated successfully!');
-            loadTransactions();
+            loadTransactions(); // Refresh dropdown
         } else {
-            alert('Please select a transaction to edit.');
+            alert('Failed to save changes. Please try again.');
         }
-    });
+    } catch (error) {
+        console.error('Error saving transaction:', error);
+    }
+}
 
-    // Delete the selected transaction
-    document.getElementById('delete-btn').addEventListener('click', function () {
-        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-        const selectedIndex = transactionSelect.value;
+// Function to delete the selected transaction
+async function deleteTransaction() {
+    const transactionId = document.getElementById('transactionSelect').value;
+    if (!transactionId) {
+        alert('Please select a transaction to delete.');
+        return;
+    }
 
-        if (selectedIndex !== '') {
-            transactions.splice(selectedIndex, 1);
-            localStorage.setItem('transactions', JSON.stringify(transactions));
+    const confirmation = confirm('Are you sure you want to delete this transaction?');
+    if (!confirmation) return;
+
+    try {
+        const response = await fetch(`/transactions/${transactionId}`, { method: 'DELETE' });
+        if (response.ok) {
             alert('Transaction deleted successfully!');
-            loadTransactions();
-            document.getElementById('editTransactionForm').reset();
+            loadTransactions(); // Refresh dropdown
+            document.getElementById('editTransactionForm').reset(); // Clear form
         } else {
-            alert('Please select a transaction to delete.');
+            alert('Failed to delete transaction. Please try again.');
         }
-    });
-});
+    } catch (error) {
+        console.error('Error deleting transaction:', error);
+    }
+}
+
+// Attach event listeners
+document.getElementById('transactionSelect').addEventListener('change', populateTransactionForm);
+document.getElementById('save-btn').addEventListener('click', saveTransaction);
+document.getElementById('delete-btn').addEventListener('click', deleteTransaction);
+
+// Initialize the page
+window.onload = initPage;

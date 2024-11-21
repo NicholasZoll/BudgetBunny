@@ -12,8 +12,11 @@
 
     <header class="header">
         <div class="header-content">
-            <span class="user-text">Hi, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
-            <button class="profile-btn">👤</button>
+            <span class="dashboard-title">My Dashboard</span>
+            <span class="user-text">Greetings, <span id="user-firstname"></span> <span id="user-lastname"></span>!</span>
+            <button class="profile-btn" id="profileBtn">
+                🥕
+            </button>
         </div>
     </header>
 
@@ -28,30 +31,39 @@
             <ul class="nav-list">
                 <li class="nav-item active">
                     <i class="icon">🏠</i>
-                    <a href="#">Dashboard</a>
+                    <a href="index.html">Dashboard</a>
                 </li>
                 <li class="nav-item">
+
+                    <i class="icon">🧾</i>
+                    <a href="recenttransaction.html">Recent Transactions</a>
+                </li>
+                <li class="nav-item">
+
                     <i class="icon">📅</i>
-                    <a href="#">Help</a>
+                    <a href="helppage.html">Help</a>
                 </li>
                 <li class="nav-item">
                     <i class="icon">📂</i>
-                    <a href="#">Learn</a>
+                    <a href="learnpage.html">Learn</a>
                 </li>
                 <li>
 
-                    <button class="openModal" data-url="addedit.html">📝 Add/Edit Envelopes</button> <!-- Button to open modal -->
-                </li>
-                <li>
-                    <button class="openModal" data-url="addtransaction.html">➕ Add Transaction</button> <!-- Button to open modal -->
-                </li>
-                <li>
-                    <button class="openModal" data-url="edittransaction.html">✏️ Edit Transaction</button> <!-- Button to open modal -->
-                </li>
-                <li>
-                    <button class="openModal" data-url="fillenvelope.html">💰 Fill Envelopes</button> <!-- Button to open modal -->
+                    <hr style="border: 1px solid #13592b; width: 100%; margin: 20px auto;">
 
-                </li>
+                    <li>
+                        <button class="openModal" data-url="addedit.html" style="font-size: 18px;">📝 Add/Edit Envelopes</button> <!-- Button to open modal -->
+                    </li>
+                    <li>
+                        <button class="openModal" data-url="addtransaction.html" style="font-size: 18px;">➕ Add Transaction</button> <!-- Button to open modal -->
+                    </li>
+                    <li>
+                        <button class="openModal" data-url="edittransaction.html" style="font-size: 18px;">✏️ Edit Transaction</button> <!-- Button to open modal -->
+                    </li>
+                    <li>
+                        <button class="openModal" data-url="fillenvelope.html" style="font-size: 18px;">💰 Fill Envelopes</button> <!-- Button to open modal -->
+                    </li>
+                    
             </ul>
         </nav>
 
@@ -102,7 +114,24 @@
                 console.error('Error fetching user information:', error);
             });
 
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/isLoggedIn')
+                .then(response => response.json())
+                .then(isLoggedIn => {
+                    if (!isLoggedIn) {
+                        window.location.href = 'loginaccount.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking login status:', error);
+                    window.location.href = 'loginaccount.html';
+                });
 
+            // event listener to profile button
+            document.getElementById('profileBtn').addEventListener('click', function() {
+                window.location.href = 'accountsettings.html';
+            });
+        });
         // Fetch the user's envelopes and display them - [NOT IMPLEMENTED, NOT SURE IF FUNCTIONAL]
         // fetch('/userEnvelopes')
         //     .then(response => response.json())
@@ -136,7 +165,20 @@
 
         // Redirect to the logout page when confirmed
         function confirmLogout() {
-            window.location.href = "loginaccount.html"; // Replace with actual logout URL or logic
+            fetch('/logout', {
+            method: 'POST',
+            credentials: 'same-origin' // Include credentials in the request
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'loginaccount.html'; // Redirect to the login page
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
         }
 
     </script>

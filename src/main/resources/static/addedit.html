@@ -7,45 +7,56 @@
     <link rel="stylesheet" href="addedit.css">
 </head>
 <body>
-
+    <!-- Modal Background -->
+    <div class="transparent-background"></div>
     
     <!-- White rectangular box for the forms -->
     <div class="container">
-        <button class="close-btn" onclick="goHome()">✖</button> <!-- X button only works in live server! -->
-        <h1>Add/Edit Envelopes🥕</h1>
+        <button class="close-btn" onclick="goHome()">✖</button> <!-- Close button -->
+        <h1>Add/Edit Envelopes 🥕</h1>
         <hr>
 
-    <!-- Section for Monthly Envelopes -->
-    <section class="envelopes-section">
-        <h2>Monthly (Primary)</h2>
-        <div class="envelope-header">
-            <strong>Name</strong>
-            <strong>Amount</strong>
-        </div>
-        <div id="monthly-envelopes" class="envelopes-list">
-            <!-- Existing envelopes will be displayed here -->
-        </div>
-        <button class="add-envelope-btn" onclick="addEnvelope('monthly')">Add +</button>
-    </section>
+        <!-- Section for Monthly Envelopes -->
+        <section class="envelopes-section">
+            <h2>Spending Budget</h2>
+            <div class="envelope-header">
+                <strong>Name</strong>
+                <strong>Amount</strong>
+            </div>
+            <div id="monthly-envelopes" class="envelopes-list">
+                <!-- Existing envelopes will be displayed here -->
+            </div>
+            <button class="add-envelope-btn" onclick="showEnvelopeForm('monthly')">Add +</button>
+        </section>
 
-    <!-- Section for Annual Envelopes -->
-    <section class="envelopes-section">
-        <br><h2>Annually</h2>
-        <div class="envelope-header">
-            <strong>Name</strong>
-            <strong>Amount</strong>
-        </div>
-        <div id="annual-envelopes" class="envelopes-list">
-            <!-- Existing envelopes will be displayed here -->
-        </div>
-        <button class="add-envelope-btn" onclick="addEnvelope('annual')">Add +</button>
-    </section>
-
-
-
+        <!-- Section for Annual Envelopes -->
+        <!-- <section class="envelopes-section">
+            <br><h2>Annually</h2>
+            <div class="envelope-header">
+                <strong>Name</strong>
+                <strong>Amount</strong>
+            </div>
+            <div id="annual-envelopes" class="envelopes-list">
+                <-- Existing envelopes will be displayed here -->
+            <!-- </div>
+            <button class="add-envelope-btn" onclick="showEnvelopeForm('annual')">Add +</button>
+        </section>  -->
 
         <!-- Save changes button -->
         <button class="save-btn" onclick="saveChanges()">Save Changes</button>
+    </div>
+
+    <!-- Envelope Form Modal -->
+    <div id="envelope-form-modal" class="modal hidden">
+        <form id="envelope-form" class="form">
+            <h2 id="form-title">Add Envelope</h2>
+            <label for="envelope-name">Envelope Name:</label>
+            <input type="text" id="envelope-name" name="envelope-name" required>
+            <label for="envelope-budget">Budget:</label>
+            <input type="number" id="envelope-budget" name="envelope-budget" min="0" required>
+            <button type="submit" class="save-btn">Save</button>
+            <button type="button" class="close-btn" onclick="hideEnvelopeForm()">Cancel</button>
+        </form>
     </div>
 
     <script src="addedit.js"></script>

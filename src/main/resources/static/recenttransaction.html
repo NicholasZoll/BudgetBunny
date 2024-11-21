@@ -34,6 +34,21 @@
                 <!-- Rows dynamically populated via JS -->
             </tbody>
         </table>
+
+        <br><br>
+        <div style="text-align: right;">
+            <button id="backButton">Back</button>
+        </div>
+        <script>
+            // Select the back button
+            const backButton = document.getElementById('backButton');
+        
+            // Add a click event listener to navigate back to index.html
+            backButton.addEventListener('click', function () {
+                window.location.href = 'index.html'; // Navigate to index.html
+            });
+        </script>
+     
         
         <div style="text-align: right; margin-top: 20px;">
             <button id="backButton" class="button">Back</button>

@@ -2,6 +2,7 @@ package com.group14.controller;
 
 import com.group14.budgetbunny.model.Envelope;
 import com.group14.budgetbunny.repository.EnvelopeRepository;
+import com.group14.budgetbunny.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -14,9 +15,7 @@ import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 // import com.group14.budgetbunny.model.User;
 // import com.group14.budgetbunny.repository.UserRepository;
@@ -27,18 +26,9 @@ public class EnvelopeController {
 
     @Autowired
     private EnvelopeRepository envelopeRepository;
-    
-    // for graphs in dash
-    @GetMapping("/graphData")
-    public List<Map<String, Object>> getGraphData() {
-        return envelopeRepository.findAll().stream().map(envelope -> {
-            Map<String, Object> graphData = new HashMap<>();
-            graphData.put("name", envelope.getName());
-            graphData.put("budget", envelope.getBudget());
-            graphData.put("spent", envelope.getSpent());
-            return graphData;
-        }).toList();
-    }
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public List<Envelope> getAllEnvelopes() {
@@ -51,8 +41,12 @@ public class EnvelopeController {
     }
 
     @PostMapping
-    public Envelope createEnvelope(@RequestBody Envelope envelope) {
-        return envelopeRepository.save(envelope);
+    public Envelope createEnvelope(@RequestBody Envelope envelopeRequest, HttpSession session) {
+        long userId = (long)session.getAttribute("userId");
+        return userRepository.findById(userId).map(user -> {
+            envelopeRequest.setUser(user);
+            return envelopeRepository.save(envelopeRequest);
+        }).orElseThrow(() -> new RuntimeException("bla bla"));
     }
 
     @PutMapping("/{id}")
@@ -67,11 +61,13 @@ public class EnvelopeController {
             return envelopeRepository.save(envelopeDetails);
         });
     }
+    
 
     @DeleteMapping("/{id}")
     public void deleteEnvelope(@PathVariable Long id) {
         envelopeRepository.deleteById(id);
     }
+    
 
     @GetMapping("/userEnvelopes")
     public ResponseEntity<List<Envelope>> getUserEnvelopes(HttpSession session) {
@@ -83,4 +79,22 @@ public class EnvelopeController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
+
+
+    @PutMapping("/bulk-update")
+public ResponseEntity<?> updateEnvelopes(@RequestBody List<Envelope> envelopes) {
+    try {
+        for (Envelope envelope : envelopes) {
+            envelopeRepository.findById(envelope.getId()).ifPresent(existingEnvelope -> {
+                existingEnvelope.setName(envelope.getName());
+                existingEnvelope.setBudget(envelope.getBudget());
+                envelopeRepository.save(existingEnvelope);
+            });
+        }
+        return ResponseEntity.ok("Envelopes updated successfully.");
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating envelopes.");
+    }
+}
+
 }
