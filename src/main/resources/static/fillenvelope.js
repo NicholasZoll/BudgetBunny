@@ -23,11 +23,14 @@ const fillOptionAdd = document.getElementById('addAmount');
 const fillOptionFill = document.getElementById('fillUp');
 const amountInput = document.getElementById('amount');
 const envelopeDropdown = document.getElementById('envelope-dropdown');
-
+const currentSpentElement = document.getElementById('current-spent');
 // Update the amount based on selected fill option
 function updateAmountField() {
     const selectedEnvelope = envelopeDropdown.options[envelopeDropdown.selectedIndex];
     const maxAmount = selectedEnvelope.getAttribute('data-max');
+    const currentSpent = selectedEnvelope.getAttribute('data-spent');
+
+    currentSpentElement.textContent = currentSpent;
 
     if (fillOptionFill.checked) {
         // Automatically fill the amount to max if "Fill Up" is selected
@@ -46,12 +49,39 @@ fillOptionFill.addEventListener('change', updateAmountField);
 envelopeDropdown.addEventListener('change', updateAmountField);
 
 // Initial update on page load
-window.onload = updateAmountField;
+// Initial update on page load
+window.onload = async function() {
+    await loadEnvelopes();
+    updateAmountField();
+};
 
-function submitForm() {
+
+
+async function loadEnvelopes() {
+    try {
+        const response = await fetch('/envelopes/userEnvelopes');
+        const envelopes = await response.json();
+
+        envelopeDropdown.innerHTML = ''; // Clear existing options
+
+        envelopes.forEach(envelope => {
+            const option = document.createElement('option');
+            option.value = envelope.id;
+            option.textContent = `${envelope.name} (Max: $${envelope.budget})`;
+            option.setAttribute('data-max', envelope.budget);
+            option.setAttribute('data-spent', envelope.spent);
+            envelopeDropdown.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading envelopes:', error);
+    }
+}
+
+// Function to handle form submission
+async function submitForm() {
     const selectedEnvelope = envelopeDropdown.value;
     const date = document.getElementById('date').value;
-    const amount = amountInput.value;
+    const amount = parseFloat(amountInput.value);
     const notes = document.getElementById('notes').value;
 
     if (!date || !amount) {
@@ -59,6 +89,32 @@ function submitForm() {
         return;
     }
 
-    console.log(`Saving data:\nEnvelope: ${selectedEnvelope}\nAmount: $${amount}\nDate: ${date}\nNotes: ${notes}`);
-    // Here you would handle form submission logic, e.g., saving the data or sending it to a server.
+    const selectedOption = envelopeDropdown.options[envelopeDropdown.selectedIndex];
+    const maxAmount = parseFloat(selectedOption.getAttribute('data-max'));
+    const currentSpent = parseFloat(selectedOption.getAttribute('data-spent'));
+
+    if (amount + currentSpent > maxAmount) {
+        alert('Amount exceeds the budget.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/envelopes/${selectedEnvelope}/updateBalance`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(amount),
+        });
+
+        if (response.ok) {
+            alert('Envelope updated successfully!');
+            goHome(); // Navigate home or close the modal
+        } else {
+            const errorMessage = await response.text();
+            alert(`Failed to update envelope: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error('Error updating envelope:', error);
+    }
 }

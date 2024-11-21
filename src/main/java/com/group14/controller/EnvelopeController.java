@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 // import com.group14.budgetbunny.model.User;
@@ -82,19 +83,36 @@ public class EnvelopeController {
 
 
     @PutMapping("/bulk-update")
-public ResponseEntity<?> updateEnvelopes(@RequestBody List<Envelope> envelopes) {
-    try {
-        for (Envelope envelope : envelopes) {
-            envelopeRepository.findById(envelope.getId()).ifPresent(existingEnvelope -> {
-                existingEnvelope.setName(envelope.getName());
-                existingEnvelope.setBudget(envelope.getBudget());
-                envelopeRepository.save(existingEnvelope);
-            });
+    public ResponseEntity<?> updateEnvelopes(@RequestBody List<Envelope> envelopes) {
+        try {
+            for (Envelope envelope : envelopes) {
+                envelopeRepository.findById(envelope.getId()).ifPresent(existingEnvelope -> {
+                    existingEnvelope.setName(envelope.getName());
+                    existingEnvelope.setBudget(envelope.getBudget());
+                    envelopeRepository.save(existingEnvelope);
+                });
+            }
+            return ResponseEntity.ok("Envelopes updated successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating envelopes.");
         }
-        return ResponseEntity.ok("Envelopes updated successfully.");
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating envelopes.");
     }
-}
 
+
+    @PutMapping("/{id}/updateBalance")
+    public ResponseEntity<?> updateEnvelopeBalance(@PathVariable Long id, @RequestBody BigDecimal amount) {
+        Optional<Envelope> optionalEnvelope = envelopeRepository.findById(id);
+        if (optionalEnvelope.isPresent()) {
+            Envelope envelope = optionalEnvelope.get();
+            BigDecimal newSpent = envelope.getSpent().add(amount);
+            if (newSpent.compareTo(envelope.getBudget()) > 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount exceeds budget");
+            }
+            envelope.setSpent(newSpent);
+            envelopeRepository.save(envelope);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
