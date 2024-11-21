@@ -159,3 +159,11 @@ body::-webkit-scrollbar-thumb {
     border: 5px solid transparent; /* Adds space around the handle */
     
 }
+
+#incomeTab {
+    display: none;
+}
+
+#transactionTab {
+    display: none;
+}
