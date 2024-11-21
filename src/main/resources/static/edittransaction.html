@@ -19,32 +19,24 @@
             <option value="">Select a transaction</option>
         </select>
 
-        <form id="editTransactionForm" style="margin-top: 20px;">
+        <form id="editTransactionForm">
             <label for="editTitle">Title:</label>
-            <input type="text" id="editTitle" required>
-
+            <input type="text" id="editTitle" name="editTitle"><br>
+        
             <label for="editDate">Date:</label>
-            <input type="date" id="editDate" required>
-
+            <input type="date" id="editDate" name="editDate"><br>
+        
             <label for="editAmount">Amount:</label>
-            <input type="number" id="editAmount" required>
-
+            <input type="number" id="editAmount" name="editAmount"><br>
+        
             <label for="editEnvelope">Envelope:</label>
-            <select id="editEnvelope" ></select>
-
-            <!--
-            <label for="editAccount">Account:</label>
-            <select id="editAccount"></select>
-            -->
-
+            <select id="editEnvelope" name="editEnvelope"></select><br>
+        
             <label for="editNotes">Notes:</label>
-            <textarea id="editNotes" rows="4" placeholder="Optional Description"></textarea>
-
-            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                <button type="button" id="delete-btn">Delete Transaction</button>
-                <button type="button" id="save-btn">Save Changes</button>
-            </div>
-            
+            <textarea id="editNotes" name="editNotes"></textarea><br>
+        
+            <button type="button" id="save-btn">Save</button>
+            <button type="button" id="delete-btn">Delete</button>
         </form>
     </div>
 

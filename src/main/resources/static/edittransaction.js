@@ -85,31 +85,77 @@ function loadAccounts() {
 }
 
 // Function to populate the transaction form on selection
-async function populateTransactionForm() {
-    const transactionId = document.getElementById('transactionSelect').value;
-    if (!transactionId) {
-        document.getElementById('editTransactionForm').reset(); // Clear form if no selection
-        return;
-    }
+// Function to populate the transaction form with data
+// Function to populate the transaction form with data
+function populateTransactionForm(transaction) {
+    // Populate the form fields
+    document.getElementById('editTitle').value = transaction.title || '';
+    document.getElementById('editDate').value = transaction.date || '';
+    document.getElementById('editAmount').value = transaction.amount || '';
+    document.getElementById('editEnvelope').value = transaction.envelope?.id || '';
+    document.getElementById('editNotes').value = transaction.notes || '';
 
-    try {
-        const response = await fetch(`/transactions/${transactionId}`);
-        if (!response.ok) {
-            console.error('Failed to fetch transaction details.');
-            return;
+    // Update the transaction dropdown to select the current transaction
+    const transactionSelect = document.getElementById('transactionSelect');
+    if (transactionSelect) {
+        // Check if the transaction already exists in the dropdown
+        let option = Array.from(transactionSelect.options).find(opt => opt.value === transaction.id);
+        if (!option) {
+            // If not, add it dynamically
+            option = document.createElement('option');
+            option.value = transaction.id;
+            option.textContent = transaction.title;
+            transactionSelect.appendChild(option);
         }
-
-        const transaction = await response.json();
-        console.log(transaction);
-        document.getElementById('editTitle').value = transaction.title;
-        document.getElementById('editDate').value = transaction.date;
-        document.getElementById('editAmount').value = transaction.amount;
-        document.getElementById('editEnvelope').value = transaction.envelope?.id || '';
-        document.getElementById('editNotes').innerHTML = transaction.notes || '';
-    } catch (error) {
-        console.error('Error populating transaction form:', error);
+        transactionSelect.value = transaction.id; // Set the current transaction as selected
     }
 }
+
+// Attach this function to the window object for external access
+window.populateTransactionForm = populateTransactionForm;
+
+// Ensure the form resets properly when the dropdown changes
+document.getElementById('transactionSelect').addEventListener('change', async function () {
+    const transactionId = this.value;
+    if (transactionId) {
+        try {
+            const response = await fetch(`/transactions/${transactionId}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch transaction details.');
+            }
+            const transaction = await response.json();
+            populateTransactionForm(transaction);
+        } catch (error) {
+            console.error('Error loading transaction:', error);
+        }
+    } else {
+        document.getElementById('editTransactionForm').reset(); // Reset the form if no transaction is selected
+    }
+});
+
+
+// Attach this function to the window object for external access
+window.populateTransactionForm = populateTransactionForm;
+
+// Initialize the page when loaded
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const transactionId = urlParams.get('id');
+    if (transactionId) {
+        fetch(`/transactions/${transactionId}`)
+            .then(response => response.json())
+            .then(populateTransactionForm)
+            .catch(error => console.error('Error populating transaction form:', error));
+    }
+};
+
+
+// // Initialize the page and populate the form
+// window.onload = () => {
+//     initPage();
+//     populateTransactionForm();
+// };
+
 
 // Function to save changes to the selected transaction
 async function saveTransaction() {
