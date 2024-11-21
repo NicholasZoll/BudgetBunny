@@ -124,18 +124,27 @@
             tableBody.innerHTML = ''; // Clear existing rows
             console.log('transactions', transactions);
     
-            transactions
-                .filter(transaction =>
-                    searchQuery === "" ||
-                    transaction.title.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-                .forEach(transaction => {
+            // **Filter transactions based on the search query**
+            const filteredTransactions = transactions.filter(transaction =>
+                searchQuery === "" ||
+                transaction.title.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+    
+            // **Check if there are no matching transactions**
+            if (filteredTransactions.length === 0) { 
+                // **Added: Display message when no transactions match the search query**
+                const noResultsRow = document.createElement('tr');
+                noResultsRow.innerHTML = `<td colspan="5" style="text-align: center;">This transaction doesn't exist.</td>`;
+                tableBody.appendChild(noResultsRow); // **Added: Append the "no results" row to the table**
+            } else {
+                // **Render filtered transactions if matches are found**
+                filteredTransactions.forEach(transaction => {
                     const date = new Date(transaction.date);
                     // Format date as "MM/DD/YYYY"
                     const formatter = new Intl.DateTimeFormat('en-US', {
-                    month: '2-digit',
-                    day: '2-digit',
-                    year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        year: 'numeric',
                     });
                     const formattedDate = formatter.format(date);
                     const row = document.createElement('tr');
@@ -145,20 +154,15 @@
                         <td>${transaction.amount < 0 ? '+' : ''}$${Math.abs(transaction.amount)}</td>
                         <td>${transaction.envelope ? transaction.envelope.name : 'N/A'}</td>
                         <td>${transaction.notes ? transaction.notes : 'N/A'}</td>
-
                     `;
                     tableBody.appendChild(row);
                 });
-    
-            if (transactions.length === 0) {
-                const noDataRow = document.createElement('tr');
-                noDataRow.innerHTML = `<td colspan="4" style="text-align: center;">No transactions found</td>`;
-                tableBody.appendChild(noDataRow);
             }
         } catch (error) {
             console.error('Error loading recent transactions:', error);
         }
     }
+    
     
     // Load transactions on page load
     loadRecentTransactions();
