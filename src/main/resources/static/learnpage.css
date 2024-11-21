@@ -26,7 +26,7 @@
     color: #333;
 }
 .tip:hover {
-    background-color: #f4a54b; /* Change background color on hover */
+    background-color: #bff7de; /* Change background color on hover */
 }
 .footer {
     width: 100%;
@@ -178,7 +178,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #67b491;
+    background-color: #81c0a5;
     grid-area: side;
     padding: 20px;
     display: flex;
@@ -207,7 +207,7 @@ body {
 
 .logo-img:hover {
     
-    background-color: #222529;
+    /* background-color: #222529; */
     border-radius: 8px; /* Subtle hover effect */
     transition: background-color 0.3s ease-in-out;
 }
@@ -244,7 +244,7 @@ body {
 .nav-item.active {
     background-color: #0b3d3c;
 }
-
+/* hi */
 .nav-item.active a {
     color: #fff;
 }

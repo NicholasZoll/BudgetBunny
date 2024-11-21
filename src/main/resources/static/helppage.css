@@ -18,19 +18,19 @@
 }
 .help-container {
     border-radius: 20%;
-    background-color: #fff; /* 1118 */
+    background-color: #3b6954; /* 1118 */
     padding: 20px;
     font-size: large;
 }
 .help-container h1{
     padding: 20px;
 
-    color: #3b6954;
+    color: #fff;
 }
 .help-container p{
     font-size: 22px;
 
-    color: #3b6954;
+    color: #fff;
 }
 
 .help-container ul {
@@ -43,7 +43,7 @@
     position: relative;
     font-size: 20px;
 
-    color: #3b6954;
+    color: #fff;
     padding-left: 25px; /* Add space for the carrot emoji */
     line-height: 1.8; /* Adjust the line height as needed */
 }
@@ -148,7 +148,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #67b491;
+    background-color: #81c0a5;
     grid-area: side;
     padding: 20px;
     display: flex;
@@ -159,6 +159,14 @@ body {
     overflow-y: auto;
     position: relative;
 }
+
+.logotiny {
+    width: 200px; /* Adjust the width for a smaller size */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto 20px; /* Center the logo with spacing below */
+}
+
+
 
 /* Logo Styling */
 .logo a {
@@ -177,7 +185,7 @@ body {
 
 .logo-img:hover {
     
-    background-color: #222529;
+    /* background-color: #222529; */
     border-radius: 8px; /* Subtle hover effect */
     transition: background-color 0.3s ease-in-out;
 }
@@ -421,4 +429,8 @@ iframe {
 .openModal i {
     font-size: 20px;
 }
+
+
+
+
 

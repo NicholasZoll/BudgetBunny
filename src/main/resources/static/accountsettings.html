@@ -33,6 +33,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="recenttransaction.html">
+                        <i class="icon">🧾</i>
+                        Recent Transactions
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="helppage.html">
                         <i class="icon">📅</i>
                         Help
@@ -44,36 +50,60 @@
                         Learn
                     </a>
                 </li>
+                
+                <hr style="border: 1px solid #13592b; width: 100%; margin: 20px auto;">
+
+                <li>
+                    <button class="openModal" data-url="addedit.html" style="font-size: 18px;">📝 Add/Edit Envelopes</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="addtransaction.html" style="font-size: 18px;">➕ Add Transaction</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="edittransaction.html" style="font-size: 18px;">✏️ Edit Transaction</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="fillenvelope.html" style="font-size: 18px;">💰 Fill Envelopes</button>
+                </li>
             </ul>
         </nav>
 
         <div class="logout-container">
-            <a href="#" id="logoutLink" class="logout">Logout</a> <!-- Logout button triggers modal -->
+            <a href="#" id="logoutLink" class="logout">Logout</a>
         </div>
     </section>
     <main class="main">
         <div class="account-container">
-            <div class="account-container">
-                <h1>Account Information</h1>
-                <p>Email: <span id="user-email"></span></p>
-                <p>First Name: <span id="account-user-firstname"></span></p>
-                <p>Last Name: <span id="account-user-lastname"></span></p>
-                <h2>Change Password</h2>
-                <form id="changePasswordForm">
-                    <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" name="currentPassword" required>
-                    
-                    <label for="newPassword">New Password:</label>
-                    <input type="password" id="newPassword" name="newPassword" required>
-                    
-                    <label for="confirmNewPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
-                    
-                    <button type="submit">Change Password</button>
-                </form>
-                <img src="images/profilepic_processed.png" alt="Account Image" class="account-image">
+            <h1>Account Information</h1>
+            <p>Email: <span id="user-email"></span></p>
+            <p>First Name: <span id="account-user-firstname"></span></p>
+            <p>Last Name: <span id="account-user-lastname"></span></p>
+            <br>
+            <h2 style="font-size: 22px;">Change Password</h2>
+            <form id="changePasswordForm">
+                <label for="currentPassword">Current Password:</label>
+                <input type="password" id="currentPassword" name="currentPassword" required>
+                <br><br>
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+                <br><br>
+                <label for="confirmNewPassword">Confirm New Password:</label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                <br><br>
+                <button type="submit">Change Password</button>
+            </form>
         </div>
     </main>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <iframe id="externalPage" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+
+    <!-- Logout Confirmation Modal -->
     <div id="logoutModal" class="modal">
         <div id="logoutModal" class="modal-content">
             <img src="budgetbunnylogo.png" alt="Bunny Logo" id="logoutModal"> 

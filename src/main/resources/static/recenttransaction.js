@@ -140,6 +140,62 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
+
+    async function loadRecentTransactions(searchQuery = "") {
+        try {
+            const response = await fetch('/transactions/userTransactions');
+            if (!response.ok) {
+                console.error('Failed to fetch transactions.');
+                return;
+            }
+    
+            const transactions = await response.json();
+            const tableBody = document.getElementById('transactionTableBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+    
+            transactions
+                .filter(transaction =>
+                    searchQuery === "" ||
+                    transaction.title.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .forEach(transaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${transaction.title}</td>
+                        <td>${new Date(transaction.date).toLocaleDateString()}</td>
+                        <td>$${transaction.amount}</td>
+                        <td>${transaction.envelope ? transaction.envelope.name : 'N/A'}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+    
+            if (transactions.length === 0) {
+                const noDataRow = document.createElement('tr');
+                noDataRow.innerHTML = `<td colspan="4" style="text-align: center;">No transactions found</td>`;
+                tableBody.appendChild(noDataRow);
+            }
+        } catch (error) {
+            console.error('Error loading recent transactions:', error);
+        }
+    }
+    
+    // Load transactions on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        loadRecentTransactions();
+    
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            loadRecentTransactions(query);
+        });
+    });
+    
+
+
+
     // Initialize the table on page load
     loadTransactionsAndIncomes();
 });

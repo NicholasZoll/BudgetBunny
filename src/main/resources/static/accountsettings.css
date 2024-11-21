@@ -19,17 +19,17 @@
     border-radius: 20%;
     background-color: #fff; /* 1118 */
     padding: 20px;
-    font-size: large;
+    font-size:medium;
 }
 .account-container h1{
     padding: 20px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: #3b6954;
 }
 
 .account-container h2{
     padding: 20px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: #3b6954;
 }
 
@@ -43,7 +43,7 @@
     background-color: #549477; /* Green background */
     color: white; /* White text */
     font-family: Arial, sans-serif; /* Arial font */
-    font-size: 18px; /* Slightly bigger font size */
+    font-size: medium; /* Slightly bigger font size */
     padding: 10px 20px; /* Padding for the button */
     border: none; /* Remove border */
     border-radius: 4px; /* Rounded corners */
@@ -70,7 +70,7 @@
 
 .account-container ul li {
     position: relative;
-    font-size: 20px;
+    font-size: 22px;
 
     color: #3b6954;
     padding-left: 25px; /* Add space for the carrot emoji */
@@ -177,7 +177,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #67b491;
+    background-color: #81c0a5;
     grid-area: side;
     padding: 20px;
     display: flex;
@@ -206,7 +206,7 @@ body {
 
 .logo-img:hover {
     
-    background-color: #222529;
+    /* background-color: #fff; */
     border-radius: 8px; /* Subtle hover effect */
     transition: background-color 0.3s ease-in-out;
 }

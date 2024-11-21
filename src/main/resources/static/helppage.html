@@ -6,15 +6,14 @@
     <title>Help Page</title>
     <link rel="stylesheet" href="helppage.css">
     <link rel="stylesheet" href="logout.css">
+
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <span class="dashboard-title">Help Page</span>
             <span class="user-text"><span id="user-firstname"></span> <span id="user-lastname"></span></span>
-            <button class="profile-btn" id="profileBtn">
-                🥕
-            </button>
+            <button class="profile-btn" id="profileBtn">🥕</button>
         </div>
     </header>
     <section class="sidebar">
@@ -29,7 +28,13 @@
                 <li class="nav-item">
                     <a href="index.html">
                         <i class="icon">🏠</i>
-                        Back to Dashboard
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="recenttransaction.html">
+                        <i class="icon">🧾</i>
+                        Recent Transactions
                     </a>
                 </li>
                 <li class="nav-item active">
@@ -44,34 +49,49 @@
                         Learn
                     </a>
                 </li>
+                <hr style="border: 1px solid #13592b; width: 100%; margin: 20px auto;">
+                <li>
+                    <button class="openModal" data-url="addedit.html" style="font-size: 18px;">📝 Add/Edit Envelopes</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="addtransaction.html" style="font-size: 18px;">➕ Add Transaction</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="edittransaction.html" style="font-size: 18px;">✏️ Edit Transaction</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="fillenvelope.html" style="font-size: 18px;">💰 Fill Envelopes</button>
+                </li>
             </ul>
         </nav>
 
         <div class="logout-container">
-            <a href="#" id="logoutLink" class="logout">Logout</a> <!-- Logout button triggers modal -->
+            <a href="#" id="logoutLink" class="logout">Logout</a>
         </div>
     </section>
     <main class="main">
         <div class="help-container">
-            <h1>Contact Information</h1>
-            <p>If you have any questions or concerns, please feel free to reach out to us:</p>
-            <ul>
-                <li>Email: support@budgetbunny.com</li>
-                <li>Phone: (123) 456-7890</li>
-                <li>Address: 123 Budget Bunny Lane, Savings City, SC 12345</li>
+            <h1 class="title">Contact Us</h1>
+            <ul class="contact-list">
+                <li><i class="icon">📞</i> +123-456-7890</li>
+                <li><i class="icon">🌐</i> www.budgetbunny.com</li>
+                <li><i class="icon">✉️</i> support@budgetbunny.com</li>
+                <li><i class="icon">📍</i> 123 Budget Bunny Lane, Savings City, SC 12345</li>
+                <p class="footer-text">Connect with us!</p>
+
+                <img src="images/budgetbunny1.png" alt="Your Logo" class="logotiny">
+
             </ul>
-            <img src="images/bunnycoin.gif" alt="Help Image" class="help-image">
         </div>
     </main>
+
     <div id="myModal" class="modal">
         <div class="modal-content">
-
-
-            <span class="close-btn"></span> <!-- Added a visible close icon -->
-            <iframe id="externalPage" src=""></iframe> <!-- iframe to load external page -->
-
+            <span class="close-btn">&times;</span>
+            <iframe id="externalPage" src="" frameborder="0"></iframe>
         </div>
     </div>
+
     <!-- Logout Confirmation Modal -->
     <div id="logoutModal" class="modal">
         <div id="logoutModal" class="modal-content">
