@@ -71,12 +71,22 @@
     </section>
 
     <main class="main">
-        <div class="card"></div>
-        <div class="card">
-            
+        <h1 class="card-header">Transactions</h1>
+        <div class="card" id="transactions">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Envelope</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-        <div class="card">
-            <canvas id="envelopeGraph"></canvas>
+        <h1 class="card-header">Envelopes</h1>
+        <div class="card" id="envelopes">
+            
         </div>
     </main>
     <div id="myModal" class="modal">
@@ -174,6 +184,69 @@
             console.error('Error:', error);
         });
         }
+
+        fetch('/transactions/userTransactions').then(t => t.json()).then(transactions => {
+            console.log('transactions', transactions);
+            for (const transaction of transactions) {
+                const table = document.querySelector('#transactions table');
+                const row = document.createElement('tr');
+                const titleCol = document.createElement('td');
+                titleCol.innerText = transaction.title;
+                row.appendChild(titleCol);
+                const dateCol = document.createElement('td');
+                dateCol.innerText = transaction.date;
+                row.appendChild(dateCol);
+                const amountCol = document.createElement('td');
+                amountCol.innerText = `${transaction.amount < 0 ? '+' : ''}$${Math.abs(transaction.amount)}`;
+                row.appendChild(amountCol);
+                const envelopeCol = document.createElement('td');
+                envelopeCol.innerText = transaction.envelope.name;
+                row.appendChild(envelopeCol);
+                table.appendChild(row);
+            }
+        })
+
+        fetch('/envelopes/userEnvelopes').then(e => e.json()).then(envelopes => {
+            console.log('envelopes', envelopes);
+            const container = document.getElementById('envelopes');
+            for (const envelope of envelopes) {
+                const row = document.createElement('div');
+                row.classList.add('envelope-row');
+                const left = document.createElement('div');
+                left.classList.add('left');
+                const bar = document.createElement('div');
+                bar.style.height = '20px';
+                bar.classList.add('bar');
+                const innerBar = document.createElement('div');
+                setInterval(() => {
+                    innerBar.style.width = `${Math.min(Math.max(Math.round(bar.clientWidth*envelope.spent/envelope.budget), 0), bar.clientWidth)}px`;
+                }, 1);
+                innerBar.style.height = '20px';
+                bar.appendChild(innerBar);
+                const title = document.createElement('span');
+                title.classList.add('title');
+                title.textContent = envelope.name;
+                left.appendChild(title);
+                left.appendChild(bar);
+                const labels = document.createElement('div');
+                labels.classList.add('labels');
+                labels.style.display = 'flex';
+                labels.style.flexDirection = 'column';
+                labels.style.justifyContent = 'end';
+                labels.style.textAlign = 'right';
+                const spentLabel = document.createElement('span');
+                spentLabel.classList.add('spent');
+                spentLabel.textContent = '$' + envelope.spent;
+                labels.appendChild(spentLabel);
+                const budgetLabel = document.createElement('span');
+                budgetLabel.classList.add('budget');
+                budgetLabel.textContent = '$' + envelope.budget;
+                labels.appendChild(budgetLabel);
+                row.appendChild(left);
+                row.appendChild(labels);
+                container.appendChild(row);
+            }
+        });
 
     </script>
 </body>

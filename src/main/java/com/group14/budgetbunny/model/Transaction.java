@@ -3,6 +3,7 @@ package com.group14.budgetbunny.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import com.group14.budgetbunny.model.Envelope;
 
 import lombok.Data;
 

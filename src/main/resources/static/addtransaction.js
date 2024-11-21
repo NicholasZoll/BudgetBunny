@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             date: document.getElementById('date').value,
             amount: parseFloat(document.getElementById('amount').value),
             envelope: { id: document.getElementById('envelope-dropdown').value },
-            account: { id: document.getElementById('account-dropdown').value },
+            // account: { id: document.getElementById('account-dropdown').value },
             notes: document.getElementById('notes').value || null,
         };
 
