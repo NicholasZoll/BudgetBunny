@@ -171,6 +171,7 @@ async function deleteTransaction() {
     }
 }
 
+
 // Attach event listeners
 document.getElementById('transactionSelect').addEventListener('change', populateTransactionForm);
 document.getElementById('save-btn').addEventListener('click', saveTransaction);
@@ -178,3 +179,5 @@ document.getElementById('delete-btn').addEventListener('click', deleteTransactio
 
 // Initialize the page
 window.onload = initPage;
+
+

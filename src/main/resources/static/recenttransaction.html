@@ -3,63 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Transactions</title>
+    <title>Recent Transactions</title>
     <link rel="stylesheet" href="recenttransaction.css">
+    <link rel="stylesheet" href="learnpage.css"> <!-- Use common styles -->
+    <link rel="stylesheet" href="logout.css"> <!-- For logout modal -->
 </head>
 <body>
-    <header>
-        <h1>Recent Transactions</h1>
+    <header class="header">
+        <div class="header-content">
+            <span class="dashboard-title">Recent Transactions</span>
+            <span class="user-text"><span id="user-firstname"></span> <span id="user-lastname"></span></span>
+            <button class="profile-btn" id="profileBtn">
+                🥕
+            </button>
+        </div>
     </header>
-    <main>
-        <table id="transactionTable">
+
+    <section class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/budgetbunnylogowords.png" alt="Logo" class="logo-img" />
+            </a>
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <i class="icon">🏠</i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="recenttransaction.html">
+                        <i class="icon">🧾</i>
+                        Recent Transactions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="helppage.html">
+                        <i class="icon">📅</i>
+                        Help
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="learnpage.html">
+                        <i class="icon">📂</i>
+                        Learn
+                    </a>
+                </li>
+
+                <hr style="border: 1px solid #13592b; width: 100%; margin: 20px auto;">
+
+                <li>
+                    <button class="openModal" data-url="addedit.html">📝 Add/Edit Envelopes</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="addtransaction.html">➕ Add Transaction</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="edittransaction.html">✏️ Edit Transaction</button>
+                </li>
+                <li>
+                    <button class="openModal" data-url="fillenvelope.html">💰 Fill Envelopes</button>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="logout-container">
+            <a href="#" id="logoutLink" class="logout">Logout</a>
+        </div>
+    </section>
+
+    <main class="main">
+        <div class="container">
+            <!-- <h1>Recent Transactions</h1> -->
             <div class="search-container">
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search ... "
-                    class="search-bar"
-                />
+                <input type="text" id="searchInput" placeholder="Search ..." class="search-bar" />
                 <button id="searchButton" class="search-button">Search</button>
             </div>
-            
-            <div class="filter-container" style="margin-top: 10px;">
-                <label for="envelopeDropdown">Filter by Envelope:</label>
+            <div class="filter-container">
+                <label for="envelopeDropdown" style="color: white;"><b>Filter by Envelope:</b></label>
                 <select id="envelopeDropdown" class="filter-dropdown">
                     <option value="">All Envelopes</option>
                     <!-- Options will be dynamically populated -->
                 </select>
             </div>
-            
-            
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Envelope</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody id="transactionTableBody">
-                <!-- Rows will be dynamically added here -->
-            </tbody>
-        </table>
-        <br><br>
-        <div style="text-align: right;">
-            <button id="backButton">Back</button>
+            <table id="transactionTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Envelope</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTableBody">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
         </div>
-        <script>
-            // Select the back button
-            const backButton = document.getElementById('backButton');
-        
-            // Add a click event listener to navigate back to index.html
-            backButton.addEventListener('click', function () {
-                window.location.href = 'index.html'; // Navigate to index.html
-            });
-        </script>
-        
-        
     </main>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <iframe id="externalPage" src=""></iframe>
+        </div>
+    </div>
+
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <img src="budgetbunnylogo.png" alt="Bunny Logo">
+            <h2>Are you sure you want to log out?</h2>
+            <button class="logout-btn" onclick="confirmLogout()">Logout</button>
+            <button class="stay-btn" onclick="closeLogoutModal()">Stay</button>
+        </div>
+    </div>
+
     <script src="recenttransaction.js"></script>
+    <script src="learnpage.js"></script>
 </body>
 </html>

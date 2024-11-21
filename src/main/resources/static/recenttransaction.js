@@ -172,66 +172,7 @@
     }
     
     
-    // Load transactions on page load
-    
-    
-//     const sortByEnvelopeButton = document.getElementById('sortByEnvelopeButton');
 
-// sortByEnvelopeButton.addEventListener('click', function () {
-//     loadRecentTransactions("", "envelope"); // Trigger the function with the "sortBy" parameter
-// });
-
-//     async function loadRecentTransactions(searchQuery = "", sortBy = "") {
-//         try {
-//             const response = await fetch('/transactions/userTransactions');
-//             if (!response.ok) {
-//                 console.error('Failed to fetch transactions.');
-//                 return;
-//             }
-    
-//             const transactions = await response.json();
-//             const tableBody = document.getElementById('transactionTableBody');
-//             tableBody.innerHTML = ''; // Clear existing rows
-    
-//             // Filter transactions based on the search query
-//             let filteredTransactions = transactions.filter(transaction =>
-//                 searchQuery === "" ||
-//                 transaction.title.toLowerCase().includes(searchQuery.toLowerCase())
-//             );
-    
-//             // Sort transactions if "sortBy" is set to "envelope"
-//             if (sortBy === "envelope") {
-//                 filteredTransactions.sort((a, b) =>
-//                     (a.envelope?.name || "").localeCompare(b.envelope?.name || "")
-//                 );
-//             }
-    
-//             // Check if there are no matching transactions
-//             if (filteredTransactions.length === 0) {
-//                 const noResultsRow = document.createElement('tr');
-//                 noResultsRow.innerHTML = `<td colspan="5" style="text-align: center;">No transactions found.</td>`;
-//                 tableBody.appendChild(noResultsRow);
-//             } else {
-//                 // Render filtered and sorted transactions
-//                 filteredTransactions.forEach(transaction => {
-//                     const date = new Date(transaction.date);
-//                     const formattedDate = date.toLocaleDateString('en-US');
-    
-//                     const row = document.createElement('tr');
-//                     row.innerHTML = `
-//                         <td>${transaction.title}</td>
-//                         <td>${formattedDate}</td>
-//                         <td>${transaction.amount < 0 ? '+' : ''}$${Math.abs(transaction.amount)}</td>
-//                         <td>${transaction.envelope ? transaction.envelope.name : 'N/A'}</td>
-//                         <td>${transaction.notes || 'N/A'}</td>
-//                     `;
-//                     tableBody.appendChild(row);
-//                 });
-//             }
-//         } catch (error) {
-//             console.error('Error loading recent transactions:', error);
-//         }
-//     }
     
     
     loadRecentTransactions();
@@ -276,4 +217,5 @@
     
 
 
+    
     
