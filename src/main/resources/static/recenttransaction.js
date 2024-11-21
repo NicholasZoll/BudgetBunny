@@ -1,39 +1,4 @@
-// // Load transactions and incomes from localStorage
-// document.addEventListener('DOMContentLoaded', function () {
-//     const tableBody = document.getElementById('transactionTableBody');
 
-//     function loadTransactionsAndIncomes() {
-//         // Retrieve data from localStorage
-//         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-//         const incomes = JSON.parse(localStorage.getItem('incomes')) || [];
-
-//         // Merge transactions and incomes for display
-//         const allEntries = [...transactions, ...incomes].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-//         // Populate the table
-//         tableBody.innerHTML = ''; // Clear existing rows
-//         allEntries.forEach(entry => {
-//             const row = document.createElement('tr');
-
-//             // Transaction/Income Details
-//             row.innerHTML = `
-//                 <td>${entry.title || 'Income'}</td>
-//                 <td>${entry.date}</td>
-//                 <td>$${entry.amount.toFixed(2)}</td>
-//                 <td>${entry.envelope || 'N/A'}</td>
-//             `;
-
-//             tableBody.appendChild(row);
-//         });
-//     }
-
-//     loadTransactionsAndIncomes(); // Load data when the page is loaded
-// });
-
-// // Navigate back to the home page
-// function goHome() {
-//     window.location.href = 'index.html';
-// }
 
 
     console.log('document loaded');
@@ -106,6 +71,8 @@
                     <td>${formatDate(entry.date)}</td>
                     <td>$${entry.amount}</td>
                     <td>${entry.envelope || ""}</td>
+                    <td>${entry.notes || ""}</td>
+
                 `;
                 row.firstElementChild.appendChild(titleLink); // Add the link to the title cell
                 tableBody.appendChild(row);
@@ -177,6 +144,8 @@
                         <td>${formattedDate}</td>
                         <td>${transaction.amount < 0 ? '+' : ''}$${Math.abs(transaction.amount)}</td>
                         <td>${transaction.envelope ? transaction.envelope.name : 'N/A'}</td>
+                        <td>${transaction.notes ? transaction.notes : 'N/A'}</td>
+
                     `;
                     tableBody.appendChild(row);
                 });
