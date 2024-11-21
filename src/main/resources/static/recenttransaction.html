@@ -22,6 +22,14 @@
                 <button id="searchButton" class="search-button">Search</button>
             </div>
             
+            <div class="filter-container" style="margin-top: 10px;">
+                <label for="envelopeDropdown">Filter by Envelope:</label>
+                <select id="envelopeDropdown" class="filter-dropdown">
+                    <option value="">All Envelopes</option>
+                    <!-- Options will be dynamically populated -->
+                </select>
+            </div>
+            
             
             <thead>
                 <tr>
@@ -29,6 +37,7 @@
                     <th>Date</th>
                     <th>Amount</th>
                     <th>Envelope</th>
+                    <th>Notes</th>
                 </tr>
             </thead>
             <tbody id="transactionTableBody">

@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Load transactions from the backend
     async function loadTransactions() {
         try {
-            const response = await fetch('/transactions');
+            const response = await fetch('/transactions/userTransactions');
             if (!response.ok) {
                 throw new Error('Failed to fetch transactions');
             }

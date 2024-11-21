@@ -85,3 +85,17 @@ tr:nth-child(even) {
 .search-container {
     margin-bottom: 20px;
 }
+
+
+.filter-dropdown {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.filter-container {
+    margin-bottom: 10px;
+}
