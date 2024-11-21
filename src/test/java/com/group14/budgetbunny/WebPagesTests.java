@@ -88,7 +88,7 @@ class WebPagesTests {
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
-        assertThat(response.getBody()).contains("Phone");
+        assertThat(response.getBody()).contains("Contact");
     }
 
     @Test
